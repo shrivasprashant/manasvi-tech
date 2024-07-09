@@ -3,6 +3,11 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import connectDatabase from './config/database.js';
 import adminRoutes from './routes/adminRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
+import reviewRoutes from './routes/reviewRoutes.js';
+import teamRoutes from './routes/teamRoutes.js';
+import contactRoutes from './routes/contactRoutes.js';
+import serviceRoutes from './routes/serviceRoutes.js'; // Import service routes here
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import logger from 'morgan';
@@ -36,6 +41,11 @@ app.use(cookieParser());
 
 // Routes handling
 app.use('/admins', adminRoutes);
+app.use('/projects', projectRoutes);
+app.use('/reviews', reviewRoutes);
+app.use('/team', teamRoutes);
+app.use('/contacts', contactRoutes);
+app.use('/services', serviceRoutes); // Use service routes here
 
 // Error handling
 app.all('*', (req, res, next) => {
