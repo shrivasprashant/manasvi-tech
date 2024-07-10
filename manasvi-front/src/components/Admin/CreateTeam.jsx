@@ -1,29 +1,44 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const CreateTeam = () => {
   const [teams, setTeams] = useState([]);
   const [formData, setFormData] = useState({
     name: '',
     designation: '',
-    image: ''
+    image: null
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value, files } = e.target;
     setFormData({
       ...formData,
-      [name]: value
+      [name]: files ? files[0] : value
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setTeams([...teams, formData]);
-    setFormData({
-      name: '',
-      designation: '',
-      image: ''
-    });
+    const data = new FormData();
+    data.append('name', formData.name);
+    data.append('designation', formData.designation);
+    data.append('image', formData.image);
+
+    try {
+      const response = await axios.post('http://localhost:5000/team/create', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      setTeams([...teams, response.data]);
+      setFormData({
+        name: '',
+        designation: '',
+        image: null
+      });
+    } catch (error) {
+      console.error('Error creating team member:', error);
+    }
   };
 
   return (
@@ -55,11 +70,10 @@ const CreateTeam = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-lg font-semibold">Image URL</label>
+          <label className="block text-gray-700 text-lg font-semibold">Image</label>
           <input
             type="file"
             name="image"
-            value={formData.image}
             onChange={handleChange}
             className="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
@@ -69,7 +83,6 @@ const CreateTeam = () => {
         </button>
       </form>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
-        {/* Team cards */}
         {teams.map((team, index) => (
           <div
             key={index}

@@ -57,7 +57,7 @@ const ProductCarousel = () => {
         {products.map((product) => (
           <SwiperSlide key={product._id}>
             <div className="flex flex-col items-center rounded m-3 shadow-2xl hover:scale-105 duration-300">
-              <img className="w-[260px] h-[200px] object-cover object-center rounded-md" src={`data:image/jpeg;base64,${product.image}`}alt={product.name} />
+              <img className="w-[260px] h-[200px] object-cover object-center rounded-md" src={`data:image/jpeg;base64,${product.image}`} alt={product.name} />
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{product.name}</div>
                 <p className="text-zinc-900 text-base">
