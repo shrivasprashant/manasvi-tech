@@ -10,6 +10,7 @@ import ServicesPage from "./ServicesPage";
 import CreateServices from "./Admin/CreateServices";
 import CreateTeam from "./Admin/CreateTeam";
 import OurTeam from "./OurTeam";
+import CreateReview from "./CreateReview";
 
 
 
@@ -27,6 +28,7 @@ function Routess() {
         <Route path="/CreateServices" element={<CreateServices />} />
         <Route path="/Createteam" element={<CreateTeam />} />
         <Route path="/OurTeam" element={<OurTeam />} />
+        <Route path="/CreateReview" element={<CreateReview />} />
       </Routes>
     </div>
   );
