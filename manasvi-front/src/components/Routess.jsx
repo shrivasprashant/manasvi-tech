@@ -4,7 +4,6 @@ import Home from "./Home";
 
 import Login from "./Admin/Login";
 import Register from "./Admin/Register";
-import CreateProject from "./Admin/CreateProject";
 import CreateProducts from "./Admin/CreateProducts";
 import ProductCarousel from "./ProductCarousel";
 import ServicesPage from "./ServicesPage";
@@ -19,7 +18,6 @@ function Routess() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/CreateProject" element={<CreateProject />} />
         <Route path="/CreateProducts" element={<CreateProducts />} />
         <Route path="/ProductCarousel" element={<ProductCarousel />} />
         <Route path="/services" element={<ServicesPage />} />

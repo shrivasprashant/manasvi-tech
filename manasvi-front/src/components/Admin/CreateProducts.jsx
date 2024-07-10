@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const CreateProducts = () => {
-  const [product, setProduct] = useState({ name: '', description: '', image: '' });
+  const [product, setProduct] = useState({ name: '', description: '', image: null });
   const [submittedProduct, setSubmittedProduct] = useState(null);
+  const [error, setError] = useState('');
 
   const handleChange = (e) => {
     setProduct({ ...product, [e.target.name]: e.target.value });
@@ -10,17 +12,31 @@ const CreateProducts = () => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setProduct({ ...product, image: reader.result });
-    };
-    reader.readAsDataURL(file);
+    setProduct({ ...product, image: file });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmittedProduct(product);
-    setProduct({ name: '', description: '', image: '' });
+
+    try {
+      const formData = new FormData();
+      formData.append('name', product.name);
+      formData.append('description', product.description);
+      formData.append('image', product.image);
+
+      const response = await axios.post('http://localhost:5000/projects/create', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+
+      setSubmittedProduct(response.data.project);
+      setProduct({ name: '', description: '', image: null });
+      setError('');
+    } catch (error) {
+      setError(error.response?.data?.message || 'Failed to create product');
+      console.error('Error creating product:', error);
+    }
   };
 
   return (
@@ -62,11 +78,13 @@ const CreateProducts = () => {
         <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Submit</button>
       </form>
 
+      {error && <div className="mt-4 p-2 bg-red-100 text-red-600 rounded-lg">{error}</div>}
+
       {submittedProduct && (
         <div className="mt-8 p-4 bg-white rounded-lg shadow-lg">
           <h2 className="text-xl font-bold mb-2">{submittedProduct.name}</h2>
           <p className="mb-2">{submittedProduct.description}</p>
-          {submittedProduct.image && <img src={submittedProduct.image} alt={submittedProduct.name} className="max-w-xs h-auto rounded" />}
+          {submittedProduct.image && <img src={`data:image/jpeg;base64,${submittedProduct.image}`} alt={submittedProduct.name} className="max-w-xs h-auto rounded" />}
         </div>
       )}
     </div>

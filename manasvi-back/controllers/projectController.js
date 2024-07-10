@@ -2,9 +2,9 @@ import Project from '../models/projectModel.js';
 
 export const createProject = async (req, res) => {
   try {
-    const { name, description, image } = req.body;
+    const { name, description } = req.body;
+    const image = req.file;
 
-    // Validate required fields
     if (!name || !description || !image) {
       return res.status(400).json({ message: 'All fields are required' });
     }
@@ -13,7 +13,7 @@ export const createProject = async (req, res) => {
     const newProject = new Project({
       name,
       description,
-      image,
+      image: image.buffer.toString('base64'),
     });
 
     // Save the project to the database
