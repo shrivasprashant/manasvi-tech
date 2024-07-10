@@ -7,6 +7,7 @@ import Register from "./Admin/Register";
 import CreateProducts from "./Admin/CreateProducts";
 import ProductCarousel from "./ProductCarousel";
 import ServicesPage from "./ServicesPage";
+import CreateServices from "./Admin/CreateServices";
 
 
 
@@ -21,6 +22,7 @@ function Routess() {
         <Route path="/CreateProducts" element={<CreateProducts />} />
         <Route path="/ProductCarousel" element={<ProductCarousel />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/CreateServices" element={<CreateServices />} />
         
       </Routes>
     </div>

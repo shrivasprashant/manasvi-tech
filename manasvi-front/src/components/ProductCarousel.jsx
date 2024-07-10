@@ -24,7 +24,7 @@ const ProductCarousel = () => {
   }, []);
 
   return (
-    <div className="container bg-slate-100 mx-auto py-4 ">
+    <div className="container bg-white mx-auto py-4 ">
       <h2 className="text-2xl inline-block rounded-full mx-2 font-bold border px-4 py-2 bg-purple-500 text-white hover:bg-purple-700  mb-6">Products</h2>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
@@ -34,8 +34,6 @@ const ProductCarousel = () => {
           delay: 1000,
           disableOnInteraction: false,
         }}
-        pagination={{ clickable: true }}
-        navigation
         breakpoints={{
           640: {
             slidesPerView: 1,
