@@ -2,8 +2,8 @@ import Team from '../models/teamModel.js';
 
 export const createTeamMember = async (req, res) => {
   try {
-    const { name, designation, image } = req.body;
-
+    const { name, designation } = req.body;
+    const image = req.file;
     // Validate required fields
     if (!name || !designation || !image) {
       return res.status(400).json({ message: 'All fields are required' });
@@ -13,7 +13,7 @@ export const createTeamMember = async (req, res) => {
     const newTeamMember = new Team({
       name,
       designation,
-      image,
+      image: image.buffer.toString('base64'),
     });
 
     // Save the team member to the database
