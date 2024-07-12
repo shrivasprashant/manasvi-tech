@@ -3,6 +3,8 @@ import React from "react";
 // import Footer from "./components/Footer";
 import { useLocation } from "react-router-dom";
 import Routess from "./components/Routess";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
   const location = useLocation();
@@ -16,7 +18,9 @@ const App = () => {
   return (
     <div>
       {/* {!isRestrictedRoute && <Header />} */}
+      <Header />
       <Routess />
+      <Footer />
       {/* {!isRestrictedRoute && <Footer />} */}
     </div>
   );

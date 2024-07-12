@@ -41,13 +41,13 @@ function ContactForm() {
   };
 
   return (
-    <div className="relative min-h-screen bg-gray-100">
+    <div className="relative py-10 ">
       {/* Background Image Overlay */}
-      <img src={Contactimg} alt="Background" className="absolute mt-[40px] inset-0 w-[480px] h-[600] object-cover opacity-50" />
+      <img src={Contactimg} alt="Background" className="absolute mt-[40px] inset-0 w-[480px] h-[600] object-cover" />
       
       {/* Contact Form Container */}
       <div className="relative flex items-center justify-center">
-        <div className="bg-white p-8 rounded-tl-[80px] shadow-lg w-full max-w-3xl mx-auto">
+        <div className="bg-black p-8 rounded-tl-[80px] shadow-lg w-full max-w-3xl  md:ml-96">
           <h2 className="text-2xl font-bold mb-4 text-center">Contact Us</h2>
           <form className="space-y-4 rounded-xl" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -96,7 +96,7 @@ function ContactForm() {
               onChange={handleChange}
               required
             ></textarea>
-            <div className="flex items-center">
+            <div className="flex items-center text-white">
               <input type="checkbox" className="mr-2" required />
               <span>
                 By sending this form I confirm that I have read and accept the 

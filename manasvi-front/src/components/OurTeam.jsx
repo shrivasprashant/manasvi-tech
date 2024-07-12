@@ -32,7 +32,7 @@ const OurTeam = () => {
         backgroundPosition: 'center',
       }}
     >
-      <h1 className="text-3xl font-bold text-white bg-purple-500 px-5 py-2 border rounded-xl">
+      <h1 className="text-3xl font-bold text-white bg-[#3c4785] px-5 py-2 border rounded-xl">
         Our Team
       </h1>
       <div className="mt-8 text-center font-semibold text-white">

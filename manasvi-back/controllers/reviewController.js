@@ -2,8 +2,8 @@ import Review from '../models/reviewModel.js';
 
 export const createReview = async (req, res) => {
   try {
-    const { clientName, clientImage, message, companyName, rating } = req.body;
-
+    const { clientName, message, companyName, rating } = req.body;
+    const clientImage = req.file
     // Validate required fields
     if (!clientName || !clientImage || !message || !companyName || !rating) {
       return res.status(400).json({ message: 'All fields are required' });
@@ -12,7 +12,7 @@ export const createReview = async (req, res) => {
     // Create a new review instance
     const newReview = new Review({
       clientName,
-      clientImage,
+      clientImage:clientImage.buffer.toString('base64'),
       message,
       companyName,
       rating,

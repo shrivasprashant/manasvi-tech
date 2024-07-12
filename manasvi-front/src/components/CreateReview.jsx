@@ -1,33 +1,57 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 
 const CreateReview = () => {
   const [reviews, setReviews] = useState([]);
   const [formData, setFormData] = useState({
     clientName: '',
-    clientImage: '',
+    clientImage: null,
     message: '',
     companyName: '',
     rating: ''
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+    const { name, value, files } = e.target;
+    if (name === 'clientImage') {
+      setFormData({
+        ...formData,
+        clientImage: files[0]
+      });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setReviews([...reviews, formData]);
-    setFormData({
-      clientName: '',
-      clientImage: '',
-      message: '',
-      companyName: '',
-      rating: ''
-    });
+    const data = new FormData();
+    data.append('clientName', formData.clientName);
+    data.append('clientImage', formData.clientImage);
+    data.append('message', formData.message);
+    data.append('companyName', formData.companyName);
+    data.append('rating', formData.rating);
+
+    try {
+      const response = await axios.post('http://localhost:5000/reviews/create', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      setReviews([...reviews, response.data]);
+      setFormData({
+        clientName: '',
+        clientImage: null,
+        message: '',
+        companyName: '',
+        rating: ''
+      });
+    } catch (error) {
+      console.error('Error creating review:', error);
+    }
   };
 
   return (
@@ -48,11 +72,10 @@ const CreateReview = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700 text-lg font-semibold">Client Image URL</label>
+          <label className="block text-gray-700 text-lg font-semibold">Client Image</label>
           <input
             type="file"
             name="clientImage"
-            value={formData.clientImage}
             onChange={handleChange}
             className="mt-1 block w-full px-4 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
@@ -94,7 +117,6 @@ const CreateReview = () => {
         </button>
       </form>
       <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
-        {/* Review cards */}
         {reviews.map((review, index) => (
           <div
             key={index}
