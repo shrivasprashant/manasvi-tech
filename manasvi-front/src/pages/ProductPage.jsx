@@ -35,7 +35,7 @@ const ProductPage = () => {
             <button className="bg-[#3c4785] text-white py-2 px-4 rounded-full">Learn more</button>
           </div>
         </div>
-        <div className="w-full md:w-1/2 p-4 flex items-center justify-center bg-red-200">
+        <div className="w-full md:w-1/2 p-4 flex items-center justify-center bg-[#BDBDFA] ">
           <img src="/path/to/your/image.png" alt="Manage your finances the easy way" className="rounded-lg shadow-md" />
         </div>
         
