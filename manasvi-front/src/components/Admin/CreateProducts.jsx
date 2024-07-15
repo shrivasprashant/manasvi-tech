@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Admin from './Admin';
 
 const CreateProducts = () => {
   const [product, setProduct] = useState({ name: '', description: '', image: null });
@@ -40,6 +41,7 @@ const CreateProducts = () => {
   };
 
   return (
+    <Admin>
     <div className="container mx-auto p-4">
       <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
         <div className="mb-4">
@@ -88,6 +90,7 @@ const CreateProducts = () => {
         </div>
       )}
     </div>
+    </Admin>
   );
 };
 

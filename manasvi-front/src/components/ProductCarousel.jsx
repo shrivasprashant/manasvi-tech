@@ -24,8 +24,8 @@ const ProductCarousel = () => {
   }, []);
 
   return (
-    <div className="container bg-white mx-auto py-4 ">
-      <h2 className="text-2xl inline-block rounded-full mx-2 font-bold border px-4 py-2 bg-purple-500 text-white hover:bg-purple-700  mb-6">Products</h2>
+    <div className="container bg-white mx-auto py-4 text-center md:text-start  lg:text-start ">
+      <h2 className="text-xl md:text-2xl lg:text-2xl inline-block rounded-lg mx-2 font-bold border px-2 py-1 md:px-4 md:py-2 bg-[#BDBDFA] text-black hover:bg-[#a7a7eb]  mb-6">Products</h2>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         slidesPerView={1}
@@ -56,7 +56,7 @@ const ProductCarousel = () => {
       >
         {products.map((product) => (
           <SwiperSlide key={product._id}>
-            <div className="flex flex-col items-center rounded m-3 shadow-2xl hover:scale-105 duration-300">
+            <div className="flex flex-col items-center text-center rounded m-3 shadow-2xl hover:scale-105 duration-300">
               <img className="w-[260px] h-[200px] object-cover object-center rounded-md" src={`data:image/jpeg;base64,${product.image}`} alt={product.name} />
               <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2">{product.name}</div>

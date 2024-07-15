@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div>
       {/* {!isRestrictedRoute && <Header />} */}
-      <Header />
+      {/* <Header /> */}
       <Routess />
       <Footer />
       {/* {!isRestrictedRoute && <Footer />} */}

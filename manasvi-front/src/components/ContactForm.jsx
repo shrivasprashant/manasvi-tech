@@ -41,7 +41,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="relative py-10 ">
+    <div className="relative py-10">
       {/* Background Image Overlay */}
       <img src={Contactimg} alt="Background" className="absolute mt-[40px] inset-0 w-[480px] h-[600] object-cover" />
       

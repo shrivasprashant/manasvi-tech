@@ -12,7 +12,7 @@ const HeroSection = () => {
           {/* Left Section */}
           <div className="lg:w-1/2 mb-8 lg:mb-0 text-center lg:text-left">
             <div className="mb-4">
-              <button className="px-4 py-2 bg-purple-500 rounded-full text-sm">About Us</button>
+              <button className="px-4 py-2 bg-[#13193c] rounded-full text-sm">About Us</button>
             </div>
             <h1 className="text-4xl lg:text-6xl font-extrabold mb-4">Your personal finances, a few taps away.</h1>
             <p className="mb-6 text-lg text-gray-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros elementum tristique.</p>
@@ -23,7 +23,7 @@ const HeroSection = () => {
               <li className="mb-2"><span className="text-purple-500">●</span> Scheduling</li>
               <li><span className="text-purple-500">●</span> Tracking</li>
             </ul>
-            <button className="px-4 py-2 bg-purple-500 rounded-lg shadow-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <button className="px-4 py-2 bg-[#13193c] rounded-lg shadow-md hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
               Learn More
             </button>
           </div>

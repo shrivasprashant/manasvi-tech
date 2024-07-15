@@ -24,7 +24,7 @@ const ServicesPage = () => {
 
   return (
     <section className="py-12 bg-gray-100">
-      <div className="container mx-auto flex flex-col md:flex-row gap-8 px-4">
+      <div className="container mx-auto flex flex-col md:flex-row gap-8 px-4 ">
         <div className="text-start mb-4 md:w-1/3">
           <h2 className="bg-[#BDBDFA] text-black text-lg font-semibold inline-block py-1 px-4 rounded-xl mb-5">
             Services
@@ -57,10 +57,10 @@ const ServicesPage = () => {
             className="relative w-full"
           >
             {services.map((service, index) => (
-              <SwiperSlide key={index} className="flex justify-center py-10">
-                <div className="bg-[#BDBDFA] shadow-md p-8 rounded-lg text-center h-48 w-72 md:h-56 md:w-80 lg:h-64 lg:w-96">
-                  <div className="text-4xl font-bold text-gray-800 mb-4">
-                    {service.serialNumber}
+              <SwiperSlide key={index} className="flex justify-center items-center py-12">
+                <div className="bg-[#BDBDFA] shadow-md p-4 rounded-lg text-center h-40 w-72 md:h-40 md:w-80 lg:h-40 lg:w-96">
+                  <div className="text-3xl font-bold text-gray-800 mb-4  rounded-full">
+                    <p className="px-2 bg-white inline-block rounded-full">{service.serialNumber}</p>
                   </div>
                   <h4 className="text-xl font-semibold mb-2">{service.serviceName}</h4>
                   <p className="text-gray-600">{service.description}</p>

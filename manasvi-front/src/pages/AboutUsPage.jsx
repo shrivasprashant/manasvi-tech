@@ -1,6 +1,7 @@
 import React from 'react';
 import backgroundImage from '../assets/Images/Footer.jpg';
 import OurTeam from '../components/OurTeam';
+import Marquee from './../components/Marquee';
 
 const AboutUsPage = () => {
   return (
@@ -42,6 +43,7 @@ const AboutUsPage = () => {
       </div>
 
       <OurTeam />
+      <Marquee />
     </div>
   );
 };

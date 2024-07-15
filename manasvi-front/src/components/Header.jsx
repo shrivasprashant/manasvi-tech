@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import mlogo from "../assets/Images/manasvilogo.png";
 import { FaAngleDown } from "react-icons/fa";
@@ -6,7 +6,8 @@ import { FaAngleDown } from "react-icons/fa";
 const Header = () => {
   const [isBottomBarVisible, setBottomBarVisible] = useState(false);
   const [isServiceBarVisible, setServiceBarVisible] = useState(false);
-
+  const [isHeaderVisible, setHeaderVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
 
   const toggleBottomBar = () => {
     setBottomBarVisible(!isBottomBarVisible);
@@ -16,9 +17,26 @@ const Header = () => {
     setServiceBarVisible(!isServiceBarVisible);
   };
 
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    setHeaderVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
+    setPrevScrollPos(currentScrollPos);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prevScrollPos]);
+
   return (
     <div>
-      <nav className="p-4 fixed top-0 left-0 w-full z-10 backdrop-filter backdrop-blur-2xl bg-[#040615] bg-opacity-50">
+      <nav
+        className={`p-4 fixed top-0 left-0 w-full z-10 backdrop-filter backdrop-blur-2xl bg-[#040615] bg-opacity-50 transition-transform duration-300 ${
+          isHeaderVisible
+            ? "transform translate-y-0"
+            : "transform -translate-y-full"
+        }`}
+      >
         <div className="container mx-auto flex justify-between items-center filter drop-shadow-lg">
           <div>
             <img src={mlogo} alt="Manasvi Logo" className="h-6 md:h-10" />
@@ -41,51 +59,57 @@ const Header = () => {
               About Us
             </NavLink>
             <div className="relative group">
-              <button className="text-white focus:outline-none">
+              <button
+                onClick={toggleServiceBar}
+                className="text-white focus:outline-none"
+              >
                 Services
+                <FaAngleDown className="inline-block ml-1" />
               </button>
-              <div className="absolute left-0 mt-2 w-56 bg-[#3c4785] text-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <NavLink
-                  to="/services/web"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 font-bold underline"
-                      : "block px-4 py-2"
-                  }
-                >
-                  Web Development
-                </NavLink>
-                <NavLink
-                  to="/services/digital"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 font-bold underline"
-                      : "block px-4 py-2"
-                  }
-                >
-                  Digital Marketing
-                </NavLink>
-                <NavLink
-                  to="/services/app"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 font-bold underline"
-                      : "block px-4 py-2"
-                  }
-                >
-                  App Development
-                </NavLink>
-                <NavLink
-                  to="/services/software"
-                  className={({ isActive }) =>
-                    isActive
-                      ? "block px-4 py-2 font-bold underline"
-                      : "block px-4 py-2"
-                  }
-                >
-                  Software Development
-                </NavLink>
-              </div>
+              {isServiceBarVisible && (
+                <div className="absolute -left-20 text-center leading-none mt-2 w-56 bg-[#3c4785] text-white rounded-lg shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <NavLink
+                    to="/services/web"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-bold underline"
+                        : "block px-4 py-2"
+                    }
+                  >
+                    Web Development
+                  </NavLink>
+                  <NavLink
+                    to="/services/digital"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-bold underline"
+                        : "block px-4 py-2"
+                    }
+                  >
+                    Digital Marketing
+                  </NavLink>
+                  <NavLink
+                    to="/services/app"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-bold underline"
+                        : "block px-4 py-2"
+                    }
+                  >
+                    App Development
+                  </NavLink>
+                  <NavLink
+                    to="/services/software"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "block px-4 py-2 font-bold underline"
+                        : "block px-4 py-2"
+                    }
+                  >
+                    Software Development
+                  </NavLink>
+                </div>
+              )}
             </div>
             <NavLink
               to="/portfolio"
@@ -140,8 +164,9 @@ const Header = () => {
 
       {/* Bottom Bar for Mobile */}
       <div
-        className={`fixed top-0 left-0 w-full h-screen backdrop-filter backdrop-blur-2xl  bg-[#040615] bg-opacity-80 z-20 transition-transform duration-500 transform ${isBottomBarVisible ? "translate-x-0" : "translate-x-full"
-          }`}
+        className={`fixed top-0 left-0 w-full h-screen backdrop-filter backdrop-blur-2xl  bg-[#040615] bg-opacity-80 z-20 transition-transform duration-500 transform ${
+          isBottomBarVisible ? "translate-x-0" : "translate-x-full"
+        }`}
       >
         <div className="container mx-auto p-4 flex flex-col space-y-4">
           <div className="w-full h-20px  flex items-center justify-between">
@@ -171,7 +196,12 @@ const Header = () => {
             About Us
           </NavLink>
           <div className="relative">
-            <button onClick={toggleServiceBar} className="text-white focus:outline-none flex items-center">Services <FaAngleDown /></button>
+            <button
+              onClick={toggleServiceBar}
+              className="text-white focus:outline-none flex items-center"
+            >
+              Services <FaAngleDown />
+            </button>
             {isServiceBarVisible && (
               <div className="absolute left-0 mt-2 w-full bg-[#3c4785] text-white rounded-lg shadow-lg">
                 <NavLink
@@ -220,7 +250,6 @@ const Header = () => {
                 </NavLink>
               </div>
             )}
-
           </div>
           <NavLink
             to="/portfolio"
@@ -259,7 +288,7 @@ const Header = () => {
             Contact Us
           </NavLink>
           <a href="tel:+8319056741" className="text-white">
-             8319056741 📞
+            8319056741 📞
           </a>
         </div>
       </div>

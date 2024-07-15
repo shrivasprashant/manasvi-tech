@@ -41,3 +41,61 @@ export const getAllProjects = async (req, res) => {
     return res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
+export const updateProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, description } = req.body;
+    const image = req.file;
+
+    // Check if project exists
+    const project = await Project.findById(id);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    // Update project fields
+    project.name = name;
+    project.description = description;
+    if (image) {
+      project.image = image.buffer.toString('base64');
+    }
+
+    // Save updated project to the database
+    await project.save();
+
+    return res.status(200).json({
+      message: 'Project updated successfully.',
+      success: true,
+      project: project,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+export const deleteProject = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Check if project exists
+    const project = await Project.findById(id);
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
+    }
+
+    // Delete project from database
+    await Project.findByIdAndDelete(id);
+
+    return res.status(200).json({
+      message: 'Project deleted successfully.',
+      success: true,
+      project: project,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+

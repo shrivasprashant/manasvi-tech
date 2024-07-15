@@ -6,7 +6,7 @@ export const createService = async (req, res) => {
 
     // Validate required fields
     if (!serviceName || !description || !serialNumber) {
-      return res.status(400).json({ message: 'Service name serialNumber and description are required' });
+      return res.status(400).json({ message: 'Service name, serial number, and description are required' });
     }
 
     // Create a new service instance
@@ -36,6 +36,60 @@ export const getAllServices = async (req, res) => {
     const services = await Service.find();
 
     return res.status(200).json(services);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+export const updateService = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { serviceName, description, serialNumber } = req.body;
+
+    // Validate required fields
+    if (!serviceName || !description || !serialNumber) {
+      return res.status(400).json({ message: 'Service name, serial number, and description are required' });
+    }
+
+    // Find the service by ID and update it
+    const updatedService = await Service.findByIdAndUpdate(
+      id,
+      { serviceName, description, serialNumber },
+      { new: true } // Return the updated document
+    );
+
+    if (!updatedService) {
+      return res.status(404).json({ message: 'Service not found' });
+    }
+
+    return res.status(200).json({
+      message: 'Service updated successfully.',
+      success: true,
+      service: updatedService,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: 'Server error', error: error.message });
+  }
+};
+
+export const deleteService = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    // Find the service by ID and delete it
+    const deletedService = await Service.findByIdAndDelete(id);
+
+    if (!deletedService) {
+      return res.status(404).json({ message: 'Service not found' });
+    }
+
+    return res.status(200).json({
+      message: 'Service deleted successfully.',
+      success: true,
+      service: deletedService,
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Server error', error: error.message });
