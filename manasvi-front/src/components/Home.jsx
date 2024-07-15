@@ -7,6 +7,7 @@ import OurTeam from './OurTeam'
 import Testimonial from './Testimonial'
 import HeroSection from './HeroSection'
 import FrontPage from './FrontPage'
+import Marquee from './Marquee'
 
 function Home() {
   return (
@@ -14,6 +15,7 @@ function Home() {
       <FrontPage />
       <ServicesPage />
       <HeroSection/>
+      <Marquee />
       <ProductCarousel />
       <OurTeam />
       <Testimonial/>

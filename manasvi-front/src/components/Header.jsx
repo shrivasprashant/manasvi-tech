@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import mlogo from "../assets/Images/manasvilogo.png";
+import { FaAngleDown } from "react-icons/fa";
 
 const Header = () => {
   const [isBottomBarVisible, setBottomBarVisible] = useState(false);
@@ -17,10 +18,10 @@ const Header = () => {
 
   return (
     <div>
-      <nav className="p-4 fixed top-0 left-0 w-full bg-gray-800 z-10">
+      <nav className="p-4 fixed top-0 left-0 w-full z-10 backdrop-filter backdrop-blur-2xl bg-[#040615] bg-opacity-50">
         <div className="container mx-auto flex justify-between items-center filter drop-shadow-lg">
           <div>
-            <img src={mlogo} alt="Manasvi Logo" className="h-10" />
+            <img src={mlogo} alt="Manasvi Logo" className="h-6 md:h-10" />
           </div>
           <div className="hidden md:flex space-x-6">
             <NavLink
@@ -139,11 +140,18 @@ const Header = () => {
 
       {/* Bottom Bar for Mobile */}
       <div
-        className={`fixed bottom-0 left-0 w-full bg-gray-800 z-20 transition-transform duration-500 transform ${
-          isBottomBarVisible ? "translate-y-0" : "translate-y-full"
-        }`}
+        className={`fixed top-0 left-0 w-full h-screen backdrop-filter backdrop-blur-2xl  bg-[#040615] bg-opacity-80 z-20 transition-transform duration-500 transform ${isBottomBarVisible ? "translate-x-0" : "translate-x-full"
+          }`}
       >
         <div className="container mx-auto p-4 flex flex-col space-y-4">
+          <div className="w-full h-20px  flex items-center justify-between">
+            <div className=" h-full ">
+              <p className="text-gray-300 text-xl">Menu</p>
+            </div>
+            <div onClick={toggleBottomBar} className=" h-full ">
+              <p className="text-gray-300 text-xl">✖</p>
+            </div>
+          </div>
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -163,56 +171,56 @@ const Header = () => {
             About Us
           </NavLink>
           <div className="relative">
-            <button onClick={toggleServiceBar} className="text-white focus:outline-none">Services</button>
+            <button onClick={toggleServiceBar} className="text-white focus:outline-none flex items-center">Services <FaAngleDown /></button>
             {isServiceBarVisible && (
               <div className="absolute left-0 mt-2 w-full bg-[#3c4785] text-white rounded-lg shadow-lg">
-              <NavLink
-                to="/services/web"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block px-4 py-2 font-bold underline"
-                    : "block px-4 py-2"
-                }
-                onClick={toggleBottomBar}
-              >
-                Web Development
-              </NavLink>
-              <NavLink
-                to="/services/digital"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block px-4 py-2 font-bold underline"
-                    : "block px-4 py-2"
-                }
-                onClick={toggleBottomBar}
-              >
-                Digital Marketing
-              </NavLink>
-              <NavLink
-                to="/services/app"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block px-4 py-2 font-bold underline"
-                    : "block px-4 py-2"
-                }
-                onClick={toggleBottomBar}
-              >
-                App Development
-              </NavLink>
-              <NavLink
-                to="/services/software"
-                className={({ isActive }) =>
-                  isActive
-                    ? "block px-4 py-2 font-bold underline"
-                    : "block px-4 py-2"
-                }
-                onClick={toggleBottomBar}
-              >
-                Software Development
-              </NavLink>
-            </div>
+                <NavLink
+                  to="/services/web"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 font-bold underline"
+                      : "block px-4 py-2"
+                  }
+                  onClick={toggleBottomBar}
+                >
+                  Web Development
+                </NavLink>
+                <NavLink
+                  to="/services/digital"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 font-bold underline"
+                      : "block px-4 py-2"
+                  }
+                  onClick={toggleBottomBar}
+                >
+                  Digital Marketing
+                </NavLink>
+                <NavLink
+                  to="/services/app"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 font-bold underline"
+                      : "block px-4 py-2"
+                  }
+                  onClick={toggleBottomBar}
+                >
+                  App Development
+                </NavLink>
+                <NavLink
+                  to="/services/software"
+                  className={({ isActive }) =>
+                    isActive
+                      ? "block px-4 py-2 font-bold underline"
+                      : "block px-4 py-2"
+                  }
+                  onClick={toggleBottomBar}
+                >
+                  Software Development
+                </NavLink>
+              </div>
             )}
-            
+
           </div>
           <NavLink
             to="/portfolio"
@@ -251,7 +259,7 @@ const Header = () => {
             Contact Us
           </NavLink>
           <a href="tel:+8319056741" className="text-white">
-            📞 8319056741
+             8319056741 📞
           </a>
         </div>
       </div>
