@@ -2,21 +2,20 @@ import Project from '../models/projectModel.js';
 
 export const createProject = async (req, res) => {
   try {
-    const { name, description } = req.body;
+    const { name, description, link } = req.body;
     const image = req.file;
 
-    if (!name || !description || !image) {
+    if (!name || !description || !image || !link) {
       return res.status(400).json({ message: 'All fields are required' });
     }
 
-    // Create a new project instance
     const newProject = new Project({
       name,
       description,
       image: image.buffer.toString('base64'),
+      link,
     });
 
-    // Save the project to the database
     await newProject.save();
 
     return res.status(201).json({
@@ -29,6 +28,40 @@ export const createProject = async (req, res) => {
     return res.status(500).json({ message: 'Server error', error: error.message });
   }
 };
+
+// export const updateProject = async (req, res) => {
+//   try {
+//     const { name, description, link } = req.body;
+//     const image = req.file ? req.file.buffer.toString('base64') : undefined;
+
+//     const updatedData = {
+//       name,
+//       description,
+//       link,
+//       ...(image && { image }),
+//     };
+
+//     const updatedProject = await Project.findByIdAndUpdate(req.params.id, updatedData, {
+//       new: true,
+//       runValidators: true,
+//     });
+
+//     if (!updatedProject) {
+//       return res.status(404).json({ message: 'Project not found' });
+//     }
+
+//     return res.status(200).json({
+//       message: 'Project updated successfully.',
+//       success: true,
+//       project: updatedProject,
+//     });
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(500).json({ message: 'Server error', error: error.message });
+//   }
+// };
+
+
 
 export const getAllProjects = async (req, res) => {
   try {
@@ -45,7 +78,7 @@ export const getAllProjects = async (req, res) => {
 export const updateProject = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description } = req.body;
+    const { name, description, link } = req.body;
     const image = req.file;
 
     // Check if project exists
@@ -57,6 +90,7 @@ export const updateProject = async (req, res) => {
     // Update project fields
     project.name = name;
     project.description = description;
+    project.link = link;
     if (image) {
       project.image = image.buffer.toString('base64');
     }
