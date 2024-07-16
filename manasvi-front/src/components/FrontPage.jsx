@@ -1,18 +1,30 @@
-// src/components/FrontPage.js
 import React from "react";
 
-import background from "../assets/Images/Footer.jpg";
-import mlogo from "../assets/Images/manasvilogo.png";
+import bgvideo from "../assets/video/Wlcome to Our Services.mp4";
+import Header from "./Headercopy";
 
 const FrontPage = () => {
   return (
-    <div
-      className="md:min-h-screen h-60 bg-cover bg-center"
-      style={{ backgroundImage: `url(${background})` }}
-    >
-      
-      <div className="text-white text-3xl font-bold flex justify-center items-center md:h-screen">
-        <img src={mlogo} alt="Manasvi Technologies Logo" />
+    <div className="relative min-h-screen">
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        className="absolute inset-0 w-full h-full object-cover"
+        style={{
+          zIndex: -1,
+        }}
+      >
+        <source src={bgvideo} type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+
+      {/* Content Overlay */}
+      <div className="">
+        {/* <Header/> */}
+        {/* <img src={mlogo} alt="Manasvi Technologies Logo" className="w-40 md:w-60" /> */}
+        {/* <h1 className="text-center mt-4 md:text-5xl">Welcome to Manasvi Technologies</h1> */}
       </div>
     </div>
   );

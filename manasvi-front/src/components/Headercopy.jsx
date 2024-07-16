@@ -8,9 +8,6 @@ const Header = () => {
   const [isServiceBarVisible, setServiceBarVisible] = useState(false);
   const [isHeaderVisible, setHeaderVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(window.pageYOffset);
-  const [isHeaderWhite, setHeaderWhite] = useState(
-    window.pageYOffset > 10 ? true : false
-  );
 
   const toggleBottomBar = () => {
     setBottomBarVisible(!isBottomBarVisible);
@@ -24,7 +21,6 @@ const Header = () => {
     const currentScrollPos = window.pageYOffset;
     setHeaderVisible(prevScrollPos > currentScrollPos || currentScrollPos < 10);
     setPrevScrollPos(currentScrollPos);
-    setHeaderWhite(currentScrollPos > 10);
   };
 
   useEffect(() => {
@@ -35,12 +31,10 @@ const Header = () => {
   return (
     <div>
       <nav
-        className={`p-4 fixed top-0 left-0 w-full z-50 backdrop-filter backdrop-blur-2xl transition-transform duration-300 ${
+        className={`p-4 fixed top-0 left-0 w-full z-10  transition-transform duration-300 ${
           isHeaderVisible
-            ? isHeaderWhite
-              ? "bg-white shadow-lg transform translate-y-0"
-              : "bg-[#040615] bg-opacity-50 shadow-none -translate-y-full"
-            : "bg-white shadow-lg transform -translate-y-full"
+            ? "transform translate-y-0"
+            : "transform -translate-y-full"
         }`}
       >
         <div className="container mx-auto flex justify-between items-center filter drop-shadow-lg">
@@ -51,7 +45,7 @@ const Header = () => {
             <NavLink
               to="/"
               className={({ isActive }) =>
-                isActive ? "text-black font-bold underline" : "text-black"
+                isActive ? "text-white font-bold underline" : "text-white"
               }
             >
               Home
@@ -59,7 +53,7 @@ const Header = () => {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                isActive ? "text-black font-bold underline" : "text-black"
+                isActive ? "text-white font-bold underline" : "text-white"
               }
             >
               About Us
@@ -67,13 +61,13 @@ const Header = () => {
             <div className="relative group">
               <button
                 onClick={toggleServiceBar}
-                className="text-black focus:outline-none"
+                className="text-white focus:outline-none"
               >
                 Services
                 <FaAngleDown className="inline-block ml-1" />
               </button>
               {isServiceBarVisible && (
-                <div className="absolute -left-20 text-center leading-none mt-2 w-56 bg-[#3c4785] text-white rounded-lg shadow-lg  transition-opacity duration-300">
+                <div className="absolute -left-20 text-center leading-none mt-2 w-56 bg-[#3c4785] text-white rounded-lg shadow-lg transition-opacity duration-300">
                   <NavLink
                     to="/services/web"
                     onClick={toggleServiceBar}
@@ -124,7 +118,7 @@ const Header = () => {
             <NavLink
               to="https://manasviportfolio.online/"
               className={({ isActive }) =>
-                isActive ? "text-black font-bold underline" : "text-black"
+                isActive ? "text-white font-bold underline" : "text-white"
               }
             >
               Portfolio
@@ -132,7 +126,7 @@ const Header = () => {
             <NavLink
               to="/products"
               className={({ isActive }) =>
-                isActive ? "text-black font-bold underline" : "text-black"
+                isActive ? "text-white font-bold underline" : "text-white"
               }
             >
               Products
@@ -140,25 +134,23 @@ const Header = () => {
             <NavLink
               to="/team"
               className={({ isActive }) =>
-                isActive ? "text-black font-bold underline" : "text-black"
+                isActive ? "text-white font-bold underline" : "text-white"
               }
             >
               Team
             </NavLink>
           </div>
           <div className="hidden md:block space-x-4">
-            <a href="tel:+8319056741" className="text-black">
+            <a href="tel:+8319056741" className="text-white">
               📞 8319056741
             </a>
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                isActive
-                  ? "text-black font-bold underline"
-                  : "text-black hover:text-gray-300"
+                isActive ? "text-white font-bold underline" : "text-white"
               }
             >
-              <button className="text-black focus:outline-none py-1 px-4 border border-gray-400 rounded-2xl">
+              <button className="text-white focus:outline-none py-1 px-4 border border-gray-400 rounded-2xl">
                 Contact Us
               </button>
             </NavLink>
@@ -166,7 +158,7 @@ const Header = () => {
           <div className="md:hidden">
             <button
               onClick={toggleBottomBar}
-              className="text-black focus:outline-none"
+              className="text-white focus:outline-none"
             >
               ☰
             </button>
@@ -176,7 +168,7 @@ const Header = () => {
 
       {/* Bottom Bar for Mobile */}
       <div
-        className={`fixed top-0 left-0 w-full h-screen backdrop-filter backdrop-blur-2xl bg-[#040615] bg-opacity-80 z-20 transition-transform duration-500 transform ${
+        className={`fixed top-0 left-0 w-full h-screen backdrop-filter backdrop-blur-2xl  bg-[#040615] bg-opacity-80 z-20 transition-transform duration-500 transform ${
           isBottomBarVisible ? "translate-x-0" : "translate-x-full"
         }`}
       >

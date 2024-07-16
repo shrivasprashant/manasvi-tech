@@ -8,13 +8,14 @@ import Testimonial from './Testimonial'
 import HeroSection from './HeroSection'
 import FrontPage from './FrontPage'
 import Marquee from './Marquee'
+import AboutUsHome from './AboutUsHome';
 
 function Home() {
   return (
     <div>
       <FrontPage />
       <ServicesPage />
-      <HeroSection/>
+      <AboutUsHome />
       <Marquee />
       <ProductCarousel />
       <OurTeam />

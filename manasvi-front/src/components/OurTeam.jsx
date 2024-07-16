@@ -36,13 +36,12 @@ const OurTeam = () => {
         Our Team
       </h1>
       <div className="mt-8 text-center font-semibold text-white">
-        <h2 className="text-3xl font-bold text-white">Meet our team</h2>
-        <h2 className="text-4xl pt-1 font-bold text-[#bea7a7]">
+      <h2 className="text-2xl lg:text-4xl font-bold text-white">Meet Our Team</h2>
+      <h3 className="text-xl lg:text-2xl pt-1 font-bold text-[#bea7a7]">
           Passionate. Dedicated. Expert.
-        </h2>
-        <p className="text-2xl mt-2 font-medium text-white">
-          We are a team of experienced and passionate individuals who are
-          dedicated to what they do.
+        </h3>
+        <p className="text-lg lg:text-xl mt-4 text-white">
+          Our team consists of experienced and passionate professionals dedicated to delivering excellence.
         </p>
       </div>
       <div className="mt-8 w-full">
@@ -67,9 +66,9 @@ const OurTeam = () => {
                   alt={team.name}
                   className="w-32 h-32 -mb-4 z-10 rounded-full "
                 />
-                <div className="w-52 rounded-3xl text-center py-6 bg-[#BDBDFA]">
-                  <h3 className="text-xl capitalize font-bold mb-1">{team.name}</h3>
-                  <p className="text-gray-600 capitalize">{team.designation}</p>
+                <div className="w-52 rounded-2xl text-center py-8 bg-[#676bb8]">
+                  <h3 className="text-xl capitalize text-gray-100 font-bold mb-1">{team.name}</h3>
+                  <p className="text-gray-100 capitalize">{team.designation}</p>
                 </div>
               </div>
             </SwiperSlide>

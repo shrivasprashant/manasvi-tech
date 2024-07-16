@@ -5,6 +5,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 const ProductCarousel = () => {
   const [products, setProducts] = useState([]);
@@ -24,14 +25,16 @@ const ProductCarousel = () => {
   }, []);
 
   return (
-    <div className="container bg-white mx-auto py-4 text-center md:text-start  lg:text-start ">
-      <h2 className="text-xl md:text-2xl lg:text-2xl inline-block rounded-lg mx-2 font-bold border px-2 py-1 md:px-4 md:py-2 bg-[#BDBDFA] text-black hover:bg-[#a7a7eb]  mb-6">Products</h2>
+    <div className="container mx-auto py-4">
+      <h2 className="text-2xl font-bold bg-[#BDBDFA] text-black inline-block rounded-lg px-4 py-2 mb-6 hover:bg-[#a7a7eb]">
+        Products
+      </h2>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         slidesPerView={1}
         spaceBetween={10}
         autoplay={{
-          delay: 1000,
+          delay: 3000,
           disableOnInteraction: false,
         }}
         breakpoints={{
@@ -56,16 +59,24 @@ const ProductCarousel = () => {
       >
         {products.map((product) => (
           <SwiperSlide key={product._id}>
-            <div className="flex flex-col items-center text-center rounded m-3 shadow-2xl hover:scale-105 duration-300">
-              <img className="w-[260px] h-[200px] object-cover object-center rounded-md" src={`data:image/jpeg;base64,${product.image}`} alt={product.name} />
-              <div className="px-6 py-4">
-                <div className="font-bold text-xl mb-2">{product.name}</div>
-                <p className="text-zinc-900 text-base">
-                  {product.description}
-                </p>
-                <div className="pt-2 pb-2 mx-2 flex justify-between gap-5">
-                  <button className="bg-gray-700 hover:bg-gray-800 text-white font-medium px-4 py-2 rounded-md">Demo</button>
-                  <button className="bg-gray-900 hover:bg-gray-950 text-white font-medium px-4 py-2 rounded-md">Details</button>
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm">
+              <img
+                className="w-full h-48 object-cover object-center"
+                src={`data:image/jpeg;base64,${product.image}`}
+                alt={product.name}
+              />
+              <div className="p-4">
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {product.name}
+                </h3>
+                <p className="text-gray-700 line-clamp-3">{product.description}</p>
+                <div className="mt-4 flex justify-between">
+                  <Link to={''} className="bg-gray-700 hover:bg-gray-800 text-white font-medium px-4 py-2 rounded-md">
+                    Demo
+                  </Link>
+                  <Link to={`/products`} className="bg-gray-900 hover:bg-gray-950 text-white font-medium px-4 py-2 rounded-md">
+                    Details
+                  </Link>
                 </div>
               </div>
             </div>
