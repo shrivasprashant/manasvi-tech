@@ -9,6 +9,13 @@ import HeroSection from './HeroSection'
 import FrontPage from './FrontPage'
 import Marquee from './Marquee'
 import AboutUsHome from './AboutUsHome';
+import Slider from './Slider'
+import ContactR from './ContactR'
+// import HeroSeHome from './HeroSeHome'
+import HeroSecond from './HeroSecond'
+import HereThree from './HereThree'
+import TeamSection from './TeamSection'
+import Banner from './Banner'
 
 function Home() {
   return (
@@ -20,7 +27,14 @@ function Home() {
       <ProductCarousel />
       <OurTeam />
       <Testimonial/>
-      <ContactForm />
+      {/* <HeroSection/> */}
+      {/* <ContactForm /> */}
+      <Banner/>
+      <HeroSecond/>
+      <HereThree/>
+      <Slider/>
+      <TeamSection/>
+      <ContactR/>
     </div>
   )
 }

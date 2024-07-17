@@ -21,6 +21,10 @@ import ProjectManagement from "./Admin/ProjectManagement";
 import TeamManagement from "./Admin/TeamManagement";
 import ReviewManagement from "./Admin/ReviewManagement";
 import ContactManagement from "./Admin/ContactManagement";
+import FeatureSection from "./FeatureSection";
+import HeroSeHome from "./HeroSeHome";
+import ContactR from "./ContactR";
+import Slider from "./Slider";
 
 function Routess() {
   return (
@@ -46,6 +50,10 @@ function Routess() {
         <Route path="/products" element={<ProductPage />} />
         <Route path="/team" element={<TeamSection />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/feature" element={<FeatureSection />} />
+        <Route path="/Hero" element={<HeroSeHome />} />
+        <Route path="/contactr" element={<ContactR/>} />
+        <Route path="/slider" element={<Slider/>} />
       
 
 

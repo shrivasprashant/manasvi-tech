@@ -1,6 +1,6 @@
 import React from "react";
 
-import bgvideo from "../assets/video/Wlcome to Our Services.mp4";
+//import bgvideo from "../assets/video/Wlcome to Our Services.mp4";
 import Header from "./Headercopy";
 
 const FrontPage = () => {
@@ -16,7 +16,7 @@ const FrontPage = () => {
           zIndex: -1,
         }}
       >
-        <source src={bgvideo} type="video/mp4" />
+        {/* <source src={bgvideo} type="video/mp4" /> */}
         Your browser does not support the video tag.
       </video>
 
