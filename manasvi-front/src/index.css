@@ -9,7 +9,7 @@ body {
     color: #000;
   }
 
-  .marquee-wrapper {
+  /* .marquee-wrapper {
     white-space: nowrap;
     overflow: hidden;
     position: relative;
@@ -17,8 +17,8 @@ body {
   
   .marquee-wrapper img {
     display: inline-block;
-    padding-right: 20px; /* Adjust as needed */
-    animation: marquee 5s linear infinite; /* Adjust timing as needed */
+    padding-right: 20px;
+    animation: marquee 5s linear infinite;
   }
   
   @keyframes marquee {
@@ -29,4 +29,4 @@ body {
     to {
       transform: translateX(100%);
     }
-  }
+  } */

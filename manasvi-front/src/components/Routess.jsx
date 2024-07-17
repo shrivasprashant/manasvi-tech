@@ -25,6 +25,7 @@ import FeatureSection from "./FeatureSection";
 import HeroSeHome from "./HeroSeHome";
 import ContactR from "./ContactR";
 import Slider from "./Slider";
+import Map from "./Map";
 
 function Routess() {
   return (
@@ -54,6 +55,7 @@ function Routess() {
         <Route path="/Hero" element={<HeroSeHome />} />
         <Route path="/contactr" element={<ContactR/>} />
         <Route path="/slider" element={<Slider/>} />
+        <Route path="/map" element={<Map/>} />
       
 
 

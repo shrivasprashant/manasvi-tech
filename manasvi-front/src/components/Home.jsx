@@ -30,8 +30,8 @@ function Home() {
       {/* <HeroSection/> */}
       {/* <ContactForm /> */}
       <Banner/>
-      <HeroSecond/>
-      <HereThree/>
+      {/* <HeroSecond/> */}
+      {/* <HereThree/> */}
       {/* <Slider/> */}
       {/* <TeamSection/> */}
       <ContactR/>

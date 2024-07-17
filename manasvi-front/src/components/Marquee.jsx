@@ -26,93 +26,96 @@
 
 // export default Marquee;
 
-import React from "react";
-// import "./MarqueeSection.css"
+import React from 'react';
+import Marquee from 'react-fast-marquee';
+
+const technologyLogos = [
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/psdd.png",
+    alt: "PSDD"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/nodejs.png",
+    alt: "Node.js"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/elemetor.png",
+    alt: "Elementor"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/html5.png",
+    alt: "HTML5"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/js.png",
+    alt: "JavaScript"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/wordpres1s.png",
+    alt: "WordPress"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/ci.png",
+    alt: "CodeIgniter"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/laravel.png",
+    alt: "Laravel"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/androids.png",
+    alt: "Android"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/firebase.png",
+    alt: "Firebase"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/flutter.png",
+    alt: "Flutter"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/iphone.png",
+    alt: "iPhone"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/mongodb.png",
+    alt: "MongoDB"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/windows.png",
+    alt: "Windows"
+  },
+  {
+    src: "https://www.ginfosoft.com/assets/img/technology/mysql.png",
+    alt: "MySQL"
+  },
+  // Add more images here if needed
+];
+
 const MarqueeSection = () => {
   return (
-    <section className="sec-pad-10 bg-gradient-to-r from-blue-500 to-pink-500">
-    <div className="container">
-      <div className="row align-items-center">
-        <div className="">
-          <div className="marquee-container">
-            <div className="marquee-wrapper p-4">
-            {/* <img
-                src="https://www.ginfosoft.com/assets/img/technology/php.png"
-                alt="PHP"
-            /> */}
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/psdd.png"
-                alt="PSDD"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/nodejs.png"
-                alt="Node.js"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/elemetor.png"
-                alt="Elementor"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/html5.png"
-                alt="HTML5"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/js.png"
-                alt="JavaScript"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/wordpres1s.png"
-                alt="WordPress"
-            />
-            {/* <img
-                src="https://www.ginfosoft.com/assets/img/technology/woos.png"
-                alt="WooCommerce"
-            /> */}
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/ci.png"
-                alt="CodeIgniter"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/laravel.png"
-                alt="Laravel"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/androids.png"
-                alt="Android"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/firebase.png"
-                alt="Firebase"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/flutter.png"
-                alt="Flutter"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/iphone.png"
-                alt="iPhone"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/mongodb.png"
-                alt="MongoDB"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/windows.png"
-                alt="Windows"
-            />
-            <img
-                src="https://www.ginfosoft.com/assets/img/technology/mysql.png"
-                alt="MySQL"
-            />
-              {/* Add more images here */}
-            </div>
+    <section className="sec-pad-10 bg-gradient-to-r from-[#e477db] via-[#9136ce]  to-[#b135c1]">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="w-full">
+            <Marquee gradient={false} speed={60}>
+              {technologyLogos.map((logo, index) => (
+                <div key={index} className="p-4">
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="h-16 mx-4"
+                  />
+                </div>
+              ))}
+            </Marquee>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  
+    </section>
   );
 };
 
 export default MarqueeSection;
+
