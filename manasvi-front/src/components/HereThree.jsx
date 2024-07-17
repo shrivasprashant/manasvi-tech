@@ -1,4 +1,6 @@
 import React from "react";
+import img1 from "../assets/Images/hero1.png";
+
 
 const HereThree = () => {
   return (
@@ -22,7 +24,7 @@ const HereThree = () => {
         </div>
         <div className="md:h-[470px]">
           <img
-            src=""
+            src={img1}
             className="w-full h-full md:object-contain"
           />
         </div>

@@ -32,8 +32,8 @@ function Home() {
       <Banner/>
       <HeroSecond/>
       <HereThree/>
-      <Slider/>
-      <TeamSection/>
+      {/* <Slider/> */}
+      {/* <TeamSection/> */}
       <ContactR/>
     </div>
   )

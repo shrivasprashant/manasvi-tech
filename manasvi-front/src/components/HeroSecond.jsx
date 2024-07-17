@@ -1,5 +1,5 @@
 import React from "react";
-
+import img1 from "../assets/Images/hero2.png";
 
 const HeroSecond = () => {
   return (
@@ -7,7 +7,7 @@ const HeroSecond = () => {
       <div className="grid md:grid-cols-2 items-center md:gap-4 gap-8 font-[sans-serif] max-w-5xl max-md:max-w-md mx-auto">
         <div className="md:h-[470px]">
           <img
-            src=""
+            src={img1}
             className="w-full h-full md:object-contain"
           />
         </div>

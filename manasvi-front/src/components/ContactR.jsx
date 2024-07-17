@@ -20,7 +20,7 @@ const ContactR = () => {
           <div className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
           <LuPhoneCall className="w-7 text-3xl"/>
             <h4 className="text-gray-800 text-base font-bold mt-4">Call us</h4>
-            <p className="text-sm text-gray-600 mt-2">+999999999</p>
+            <p className="text-sm text-gray-600 mt-2">8319056741</p>
           </div>
           <div className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
           <IoChatboxEllipsesOutline className="w-7 text-3xl fill-blue-600"/>
@@ -47,7 +47,7 @@ const ContactR = () => {
               <textarea placeholder='Message' rows="6"
                 className="w-full bg-gray-100 rounded-lg px-6 text-sm pt-3 outline-none"></textarea>
               <button type='button'
-                className="text-gray-800 w-full relative bg-[#7E22CE] hover:bg-yellow-500 font-semibold rounded-lg text-sm px-6 py-3 !mt-6">
+                className="text-gray-800 w-full relative text-white bg-[#05102C] hover:bg-white hover:text-black font-semibold rounded-lg text-sm px-6 py-3 !mt-6">
                 <BsFillSendFill className='mr-2 inline' fill='currentColors'/>
                 Send Message
               </button>
