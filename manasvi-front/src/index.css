@@ -5,6 +5,28 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+    /* background-color: #f5f5f5; */
     color: #000;
+  }
+
+  .marquee-wrapper {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .marquee-wrapper img {
+    display: inline-block;
+    padding-right: 20px; /* Adjust as needed */
+    animation: marquee 5s linear infinite; /* Adjust timing as needed */
+  }
+  
+  @keyframes marquee {
+    from {
+      transform: translateX(-100%);
+    }
+    
+    to {
+      transform: translateX(100%);
+    }
   }

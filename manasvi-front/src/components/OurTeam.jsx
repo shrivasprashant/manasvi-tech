@@ -55,7 +55,7 @@ const OurTeam = () => {
           breakpoints={{
             640: { slidesPerView: 1 },
             768: { slidesPerView: 3 },
-            1024: { slidesPerView: 6 },
+            1024: { slidesPerView: 5 },
           }}
         >
           {teams.map((team, index) => (
@@ -66,7 +66,7 @@ const OurTeam = () => {
                   alt={team.name}
                   className="w-32 h-32 -mb-4 z-10 rounded-full "
                 />
-                <div className="w-52 rounded-2xl text-center py-8 bg-[#676bb8]">
+                <div className="w-56 rounded-2xl text-center py-8 bg-[#676bb8]">
                   <h3 className="text-xl capitalize text-gray-100 font-bold mb-1">{team.name}</h3>
                   <p className="text-gray-100 capitalize">{team.designation}</p>
                 </div>

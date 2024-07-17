@@ -1,5 +1,7 @@
 import React from "react";
 import backgroundImage from "../assets/Images/Footer.jpg";
+import Director from "../assets/Images/arpit jain.jpg";
+
 import back2 from "../assets/Images/backimg2.png";
 import OurTeam from "../components/OurTeam";3
 import Marquee from './../components/Marquee';
@@ -31,13 +33,13 @@ const TeamSection = () => {
       >
         <div className="container mx-auto flex flex-col justify-center items-center px-4 md:px-8">
           <div className="flex flex-col md:flex-row items-center justify-center bg-white shadow-xl rounded-lg overflow-hidden w-full md:w-3/4 lg:w-2/3 xl:w-1/2 transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
-            <div className="w-full md:w-1/2 h-64 md:h-auto bg-cover bg-center md:rounded-ee-full overflow-hidden">
-              <img className="w-full h-full object-cover object-top" src="https://i.pinimg.com/736x/72/4f/5a/724f5a0de19be1ff52de222703ac2e92.jpg" alt="Team Member" />
+            <div className="w-full md:w-1/2 h-64 md:h-96 bg-cover bg-center md:rounded-ee-full overflow-hidden">
+        <img className="w-full h-full object-cover object-center" src={Director} alt="Team Member" />
             </div>
             <div className="w-full md:w-1/2 p-6 md:p-8">
               <h3 className="text-3xl font-bold text-gray-800">Arpit Jain</h3>
               <span className="block bg-purple-100 text-purple-800 text-sm font-semibold py-1 px-2 rounded-full mb-4 inline-block">
-                Director
+                 Managing Director
               </span>
               <h4 className="text-xl font-semibold mb-4 text-gray-700">
                 Leading Innovation with Passion and Excellence.

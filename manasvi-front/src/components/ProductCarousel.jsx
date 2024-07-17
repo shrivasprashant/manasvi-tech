@@ -25,8 +25,8 @@ const ProductCarousel = () => {
   }, []);
 
   return (
-    <div className="container mx-auto md:py-24 lg:py-24 text-center min-h-screen">
-      <h2 className="text-center  text-2xl font-bold bg-white text-black inline-block rounded-full px-8 py-2 mb-6  hover:bg-[#a7a7eb]">
+    <div className="container mx-auto md:py-24 lg:py-12 text-center min-h-screen">
+      <h2 className="text-center  text-2xl font-bold bg-white text-black inline-block rounded-full px-8 py-2 mb-6 border border-gray-300  hover:bg-[#a7a7eb]">
         Our Featured Products
       </h2>
       <h1 className='text-4xl -tracking-normal capitalize font-bold text-black md:mb-12'>
@@ -62,10 +62,10 @@ const ProductCarousel = () => {
       >
         {products.map((product) => (
           <SwiperSlide key={product._id}>
-            <div className="group card bg-[#192655] h-96 w-80 shadow-xl mx-auto relative overflow-hidden">
-              <figure>
+            <div className="group card bg-[#192655] h-96 w-72 shadow-xl mx-auto relative overflow-hidden">
+              <figure className='w-full h-64 py-2'>
                 <img
-                  className="w-full h-60 object-cover bg-[#4793AF]"
+                  className="w-[270px] h-full object-cover bg-[#4793AF]"
                   src={`data:image/jpeg;base64,${product.image}`}
                   alt={product.name}
                 />
@@ -75,7 +75,7 @@ const ProductCarousel = () => {
                   {product.name}
                 </h2>
                 <p className="line-clamp-10">{product.description}</p>
-                <div className="card-actions justify-between w-full py-5">
+                <div className="card-actions justify-between w-full pt-5">
                   {
                     product.link ? (
                       <Link to={product.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
@@ -88,7 +88,7 @@ const ProductCarousel = () => {
                   <Link to={`/products`} className="badge badge-outline">Details</Link>
                 </div>
               </div>
-              <div className="card-body absolute bottom-0 left-0 w-full bg-[#192655] bg-opacity-80 text-white transition-transform transform translate-y-0 group-hover:translate-y-full">
+              <div className="card-body absolute bottom-0 left-0 w-full  bg-opacity-80 text-white transition-transform transform translate-y-0 group-hover:translate-y-full">
                 <h2 className="card-title text-white">
                   {product.name}
                 </h2>

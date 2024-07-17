@@ -78,6 +78,9 @@ const Sidebar = () => {
             <Link to="/admin/ManageReviews">Review Management</Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
+            <Link to="/CreateReview">Create Review </Link>
+          </li>
+          <li className="p-4 hover:bg-gray-700">
             <Link to="/admin/ManageContacts">Contact Management</Link>
           </li>
         </ul>

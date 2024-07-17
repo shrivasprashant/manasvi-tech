@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const ProjectCards = () => {
   const [projects, setProjects] = useState([]);
@@ -51,12 +52,17 @@ const ProjectCards = () => {
                   <p className="text-gray-700 text-base">{project.description}</p>
                 </div>
                 <div className="mt-4 flex space-x-2">
-                  <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700">
-                    Demo
-                  </button>
-                  <button className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700">
+                {
+                    project.link ? (
+                      <Link to={project.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
+                    )
+                      : (
+                        <Link to={''} className="badge badge-outline">Soon</Link>
+                      )
+                  }
+                  {/* <button className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700">
                     Details
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>

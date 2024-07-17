@@ -5,6 +5,7 @@ import Admin from './Admin';
 const ProjectManagement = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
+  console.log(selectedProject);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
@@ -101,7 +102,7 @@ const ProjectManagement = () => {
         </div>
 
         {selectedProject && (
-          <form onSubmit={handleUpdate} className="max-w-lg mx-auto text-white">
+          <form onSubmit={handleUpdate} className="max-w-lg mx-auto">
             <h2 className="text-2xl font-bold mb-4">Update Project</h2>
             <div className="mb-4">
               <label htmlFor="name" className="block text-lg font-medium text-gray-700">
@@ -140,7 +141,6 @@ const ProjectManagement = () => {
                 value={link}
                 onChange={(e) => setLink(e.target.value)}
                 placeholder="Enter project link"
-                required
               />
             </div>
             <div className="mb-4">
