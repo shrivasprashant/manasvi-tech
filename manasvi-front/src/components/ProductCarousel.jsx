@@ -25,10 +25,13 @@ const ProductCarousel = () => {
   }, []);
 
   return (
-    <div className="container mx-auto py-4">
-      <h2 className="text-2xl font-bold bg-[#BDBDFA] text-black inline-block rounded-lg px-4 py-2 mb-6 hover:bg-[#a7a7eb]">
-        Products
+    <div className="container mx-auto md:py-24 lg:py-24 text-center min-h-screen">
+      <h2 className="text-center  text-2xl font-bold bg-white text-black inline-block rounded-full px-8 py-2 mb-6  hover:bg-[#a7a7eb]">
+        Our Featured Products
       </h2>
+      <h1 className='text-4xl -tracking-normal capitalize font-bold text-black md:mb-12'>
+        Let me know <span className="text-[#9595f1]">if you need</span> <br /> any other modifications!
+      </h1>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         slidesPerView={1}
@@ -51,32 +54,56 @@ const ProductCarousel = () => {
             spaceBetween: 30,
           },
           1280: {
-            slidesPerView: 4,
+            slidesPerView: 3,
             spaceBetween: 30,
           },
         }}
-        className="mySwiper"
+        className="mySwiper bg-gray-300 p-10 rounded-lg"
       >
         {products.map((product) => (
           <SwiperSlide key={product._id}>
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden mx-auto max-w-sm">
-              <img
-                className="w-full h-48 object-cover object-center"
-                src={`data:image/jpeg;base64,${product.image}`}
-                alt={product.name}
-              />
-              <div className="p-4">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
+            <div className="group card bg-[#192655] h-96 w-80 shadow-xl mx-auto relative overflow-hidden">
+              <figure>
+                <img
+                  className="w-full h-60 object-cover bg-[#4793AF]"
+                  src={`data:image/jpeg;base64,${product.image}`}
+                  alt={product.name}
+                />
+              </figure>
+              <div className="absolute inset-0 flex flex-col text-center px-6 items-center justify-center    bg-[#192655] bg-opacity-90 text-white transition-transform transform translate-y-full group-hover:translate-y-0">
+                <h2 className="card-title text-white">
                   {product.name}
-                </h3>
-                <p className="text-gray-700 line-clamp-3">{product.description}</p>
-                <div className="mt-4 flex justify-between">
-                  <Link to={''} className="bg-gray-700 hover:bg-gray-800 text-white font-medium px-4 py-2 rounded-md">
-                    Demo
-                  </Link>
-                  <Link to={`/products`} className="bg-gray-900 hover:bg-gray-950 text-white font-medium px-4 py-2 rounded-md">
-                    Details
-                  </Link>
+                </h2>
+                <p className="line-clamp-10">{product.description}</p>
+                <div className="card-actions justify-between w-full py-5">
+                  {
+                    product.link ? (
+                      <Link to={product.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
+                    )
+                      : (
+                        <Link to={''} className="badge badge-outline">Soon</Link>
+                      )
+                  }
+                  {/* <Link to={''} className="badge badge-outline">Demo</Link> */}
+                  <Link to={`/products`} className="badge badge-outline">Details</Link>
+                </div>
+              </div>
+              <div className="card-body absolute bottom-0 left-0 w-full bg-[#192655] bg-opacity-80 text-white transition-transform transform translate-y-0 group-hover:translate-y-full">
+                <h2 className="card-title text-white">
+                  {product.name}
+                </h2>
+                {/* <p className="line-clamp-3">{product.description}</p> */}
+                <div className="card-actions justify-between">
+                  {
+                    product.link ? (
+                      <Link to={product.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
+                    )
+                      : (
+                        <Link to={''} className="badge badge-outline">Soon</Link>
+                      )
+                  }
+                  {/* <Link to={''} className="badge badge-outline">Demo</Link> */}
+                  <Link to={`/products`} className="badge badge-outline">Details</Link>
                 </div>
               </div>
             </div>
