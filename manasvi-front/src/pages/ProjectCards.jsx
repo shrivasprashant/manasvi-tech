@@ -8,7 +8,7 @@ const ProjectCards = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/projects/all");
+        const response = await axios.get("/projects/all");
         setProjects(response.data);
         console.log(response.data);
       } catch (error) {

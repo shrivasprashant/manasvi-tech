@@ -22,7 +22,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/admins/login', formData);
+      const response = await axios.post('/admins/login', formData);
       setSuccess('Login successful');
       console.log(response.data);
 

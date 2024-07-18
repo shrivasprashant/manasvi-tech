@@ -34,7 +34,7 @@ const ContactR = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5000/contacts/create",
+        "/contacts/create",
         formData
       );
       setSuccess("Message sent successfully");

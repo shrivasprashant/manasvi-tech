@@ -14,7 +14,7 @@ const ServiceManagement = () => {
 
   const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/services/all');
+      const response = await axios.get('/services/all');
       setServices(response.data);
     } catch (error) {
       console.error('Error fetching services:', error);
@@ -30,9 +30,9 @@ const ServiceManagement = () => {
     e.preventDefault();
     try {
       if (editId) {
-        await axios.put(`http://localhost:5000/services/update/${editId}`, form);
+        await axios.put(`/services/update/${editId}`, form);
       } else {
-        await axios.post('http://localhost:5000/services/create', form);
+        await axios.post('/services/create', form);
       }
       setForm({ serviceName: '', description: '', serialNumber: '' });
       setEditId(null);
@@ -49,7 +49,7 @@ const ServiceManagement = () => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/services/delete/${id}`);
+      await axios.delete(`/services/delete/${id}`);
       fetchServices();
     } catch (error) {
       console.error('Error deleting service:', error);

@@ -15,7 +15,7 @@ const TeamManagement = () => {
 
   const fetchTeamMembers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/team/all');
+      const response = await axios.get('/team/all');
       setTeamMembers(response.data);
     } catch (error) {
       console.error('Error fetching team members:', error);
@@ -32,7 +32,7 @@ const TeamManagement = () => {
         formData.append('image', image);
       }
 
-      await axios.put(`http://localhost:5000/team/update/${selectedTeamMember._id}`, formData, {
+      await axios.put(`/team/update/${selectedTeamMember._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -47,7 +47,7 @@ const TeamManagement = () => {
 
   const handleDelete = async (teamMemberId) => {
     try {
-      await axios.delete(`http://localhost:5000/team/delete/${teamMemberId}`);
+      await axios.delete(`/team/delete/${teamMemberId}`);
       fetchTeamMembers();
     } catch (error) {
       console.error('Error deleting team member:', error);

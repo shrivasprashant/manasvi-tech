@@ -16,7 +16,7 @@ const ContactManagement = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/contacts/all');
+      const response = await axios.get('/contacts/all');
       setContacts(response.data);
     } catch (error) {
       console.error('Error fetching contacts:', error);
@@ -28,7 +28,7 @@ const ContactManagement = () => {
     try {
       const newContact = { name, address, phoneNumber, email, message };
 
-      await axios.post('http://localhost:5000/contacts/create', newContact);
+      await axios.post('/contacts/create', newContact);
 
       fetchContacts();
       clearForm();
@@ -42,7 +42,7 @@ const ContactManagement = () => {
     try {
       const updatedContact = { name, address, phoneNumber, email, message };
 
-      await axios.put(`http://localhost:5000/contacts/update/${selectedContact._id}`, updatedContact);
+      await axios.put(`/contacts/update/${selectedContact._id}`, updatedContact);
 
       fetchContacts();
       clearForm();
@@ -53,7 +53,7 @@ const ContactManagement = () => {
 
   const handleDelete = async (contactId) => {
     try {
-      await axios.delete(`http://localhost:5000/contacts/delete/${contactId}`);
+      await axios.delete(`/contacts/delete/${contactId}`);
       fetchContacts();
       clearForm();
     } catch (error) {

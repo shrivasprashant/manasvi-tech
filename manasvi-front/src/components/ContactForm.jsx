@@ -22,7 +22,7 @@ function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/contacts/create', formData);
+      const response = await axios.post('/contacts/create', formData);
       setSuccess('Message sent successfully');
       setError('');
       // Handle success (e.g., clear form, show a success message)

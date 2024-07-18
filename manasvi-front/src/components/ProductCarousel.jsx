@@ -13,7 +13,7 @@ const ProductCarousel = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/projects/all');
+        const response = await axios.get('/projects/all');
         setProducts(response.data);
         console.log(response.data);
       } catch (error) {

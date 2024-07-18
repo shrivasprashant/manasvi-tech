@@ -17,7 +17,7 @@ const ProjectManagement = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/projects/all');
+      const response = await axios.get('/projects/all');
       setProjects(response.data);
     } catch (error) {
       console.error('Error fetching projects:', error);
@@ -35,7 +35,7 @@ const ProjectManagement = () => {
         formData.append('image', image);
       }
 
-      await axios.put(`http://localhost:5000/projects/update/${selectedProject._id}`, formData, {
+      await axios.put(`/projects/update/${selectedProject._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -50,7 +50,7 @@ const ProjectManagement = () => {
 
   const handleDelete = async (projectId) => {
     try {
-      await axios.delete(`http://localhost:5000/projects/delete/${projectId}`);
+      await axios.delete(`/projects/delete/${projectId}`);
       fetchProjects();
     } catch (error) {
       console.error('Error deleting project:', error);

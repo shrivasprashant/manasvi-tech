@@ -37,7 +37,7 @@ const CreateReview = () => {
     data.append('rating', formData.rating);
 
     try {
-      const response = await axios.post('http://localhost:5000/reviews/create', data, {
+      const response = await axios.post('/reviews/create', data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }

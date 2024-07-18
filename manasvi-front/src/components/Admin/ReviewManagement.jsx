@@ -17,7 +17,7 @@ const ReviewManagement = () => {
 
   const fetchReviews = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/reviews/all');
+      const response = await axios.get('/reviews/all');
       setReviews(response.data);
     } catch (error) {
       console.error('Error fetching reviews:', error);
@@ -36,7 +36,7 @@ const ReviewManagement = () => {
         formData.append('clientImage', clientImage);
       }
 
-      await axios.put(`http://localhost:5000/reviews/update/${selectedReview._id}`, formData, {
+      await axios.put(`/reviews/update/${selectedReview._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -51,7 +51,7 @@ const ReviewManagement = () => {
 
   const handleDelete = async (reviewId) => {
     try {
-      await axios.delete(`http://localhost:5000/reviews/delete/${reviewId}`);
+      await axios.delete(`/reviews/delete/${reviewId}`);
       fetchReviews();
     } catch (error) {
       console.error('Error deleting review:', error);

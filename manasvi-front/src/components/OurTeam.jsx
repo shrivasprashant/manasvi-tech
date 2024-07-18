@@ -13,7 +13,7 @@ const OurTeam = () => {
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/team/all");
+        const response = await axios.get("/team/all");
         setTeams(response.data);
       } catch (error) {
         console.error("Error fetching team members:", error);

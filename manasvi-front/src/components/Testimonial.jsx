@@ -13,7 +13,7 @@ const Testimonial = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/reviews/all');
+        const response = await axios.get('/reviews/all');
         setTestimonials(response.data);
         setLoading(false);
       } catch (error) {
