@@ -1,26 +1,26 @@
 import React from "react";
-// import Header from "./components/Header";
-// import Footer from "./components/Footer";
 import { useLocation } from "react-router-dom";
 import Routess from "./components/Routess";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-
+import Headercopy from "./components/Headercopy";
 
 const App = () => {
   const location = useLocation();
 
-  // const adminPaths = [];
-
-  // const isRestrictedRoute = adminPaths.includes(location.pathname.toLowerCase());
+  // Check if the current path is an admin path
+  const isAdminRoute = location.pathname.startsWith("/admin" || "/Admin/");
 
   return (
     <div>
-      {/* {!isRestrictedRoute && <Header />} */}
-      <Header />
+      {!isAdminRoute && (
+        <>
+          <Header />
+          <Headercopy />
+        </>
+      )}
       <Routess />
-      <Footer />
-      {/* {!isRestrictedRoute && <Footer />} */}
+      {!isAdminRoute && <Footer />}
     </div>
   );
 };

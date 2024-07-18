@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import logo from '../../assets/Images/manasvilogo.png';
 import backgroundImage from "../../assets/Images/Footer.jpg";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,9 +24,22 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/admins/login', formData);
       setSuccess('Login successful');
-      setError('');
-      // Handle login success (e.g., save token, redirect)
       console.log(response.data);
+
+      const { token, role } = response.data;
+
+      if (token) {
+        localStorage.setItem('role', role);
+        localStorage.setItem('token', token);
+      }
+
+      if (role && role === 'admin') {
+        navigate('/admin');
+      } else {
+        navigate('/');
+      }
+
+      setError('');
     } catch (error) {
       setError(error.response?.data?.message || 'Login failed');
       setSuccess('');

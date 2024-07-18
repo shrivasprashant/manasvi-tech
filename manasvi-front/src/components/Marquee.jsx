@@ -95,7 +95,7 @@ const technologyLogos = [
 
 const MarqueeSection = () => {
   return (
-    <section className="sec-pad-10 bg-gradient-to-r from-[#e477db] via-[#9136ce]  to-[#b135c1]">
+    <section className="sec-pad-10 bg-gradient-to-r from-[#070006] via-[#210136]  to-[#140149]">
       <div className="container">
         <div className="row align-items-center">
           <div className="w-full">
@@ -105,7 +105,7 @@ const MarqueeSection = () => {
                   <img
                     src={logo.src}
                     alt={logo.alt}
-                    className="h-16 mx-4"
+                    className="h-16 mx-4 bg-[#072570] p-4 rounded-full"
                   />
                 </div>
               ))}

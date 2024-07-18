@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import mlogo from "../assets/Images/manasvilogo.png";
 import { FaAngleDown } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isBottomBarVisible, setBottomBarVisible] = useState(false);
@@ -27,6 +28,21 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [prevScrollPos]);
+
+  const role = localStorage.getItem("role");
+  const token = localStorage.getItem("token");
+
+  // Example: User authentication state and role
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState("user");
+
+  useEffect(() => {
+    setUserRole(role);
+    setIsLoggedIn(!!token);
+  }, [role, token]);
+
+  // Example: Get user role from context or state
+  // const userRole = "admin"; // Replace with actual logic to get user role
 
   return (
     <div>
@@ -154,6 +170,24 @@ const Header = () => {
                 Contact Us
               </button>
             </NavLink>
+            {userRole === "admin" ? (
+              <NavLink
+                to="/admin"
+                className={({ isActive }) =>
+                  isActive ? "text-white font-bold underline" : "text-white"
+                }
+              >
+                <button className="text-white focus:outline-none py-1 px-4 border border-gray-400 rounded-2xl">
+                  Admin
+                </button>
+              </NavLink>
+            ) : (
+              <NavLink>
+                <Link to="/login" className="text-white focus:outline-none py-1 px-4 border border-gray-400 rounded-2xl">
+                  Login
+                </Link>
+              </NavLink>
+            )}
           </div>
           <div className="md:hidden">
             <button
@@ -294,6 +328,17 @@ const Header = () => {
           <a href="tel:+8319056741" className="text-white">
             8319056741 📞
           </a>
+          {userRole === "admin" && (
+            <NavLink
+              to="/admin"
+              className={({ isActive }) =>
+                isActive ? "text-white font-bold underline" : "text-white"
+              }
+              onClick={toggleBottomBar}
+            >
+              Admin
+            </NavLink>
+          )}
         </div>
       </div>
     </div>

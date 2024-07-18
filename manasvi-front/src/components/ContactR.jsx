@@ -2,23 +2,28 @@ import React from "react";
 import { SlLocationPin } from "react-icons/sl";
 import { LuPhoneCall } from "react-icons/lu";
 import { IoChatboxEllipsesOutline } from "react-icons/io5";
-import { IoLogoInstagram, IoLogoFacebook, IoLogoLinkedin, IoLogoTwitter } from "react-icons/io";
+import {
+  IoLogoInstagram,
+  IoLogoFacebook,
+  IoLogoLinkedin,
+  IoLogoTwitter,
+} from "react-icons/io";
 import { Link } from "react-router-dom";
-import axios from 'axios';
+import axios from "axios";
 import { useState } from "react";
-import { BsFillSendFill } from 'react-icons/bs';
+import { BsFillSendFill } from "react-icons/bs";
 
 const ContactR = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    address: '',
-    phoneNumber: '',
-    email: '',
-    message: '',
+    name: "",
+    address: "",
+    phoneNumber: "",
+    email: "",
+    message: "",
   });
 
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,20 +33,23 @@ const ContactR = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/contacts/create', formData);
-      setSuccess('Message sent successfully');
-      setError('');
+      const response = await axios.post(
+        "http://localhost:5000/contacts/create",
+        formData
+      );
+      setSuccess("Message sent successfully");
+      setError("");
       console.log(response.data);
       setFormData({
-        name: '',
-        address: '',
-        phoneNumber: '',
-        email: '',
-        message: '',
+        name: "",
+        address: "",
+        phoneNumber: "",
+        email: "",
+        message: "",
       });
     } catch (error) {
-      setError(error.response?.data?.message || 'Failed to send message');
-      setSuccess('');
+      setError(error.response?.data?.message || "Failed to send message");
+      setSuccess("");
     }
   };
 
@@ -50,38 +58,71 @@ const ContactR = () => {
       <div className="font-[sans-serif] max-w-6xl mx-auto relative rounded-lg py-6">
         <div className="grid lg:grid-cols-3 items-center">
           <div className="grid sm:grid-cols-2 gap-4 z-20 relative lg:left-16 max-lg:px-4">
-            <Link to="/map" className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
+            <div className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
               <SlLocationPin className="w-7 text-3xl fill-blue-600" />
               <h4 className="text-gray-800 text-base font-bold mt-4">
                 Visit office
               </h4>
-              <p className="text-sm text-gray-600 mt-2">Prabhat Bhopal</p>
-            </Link>
-            <Link to="tel:8319955741" className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
+
+              <Link to="/map">Bhopal</Link>
+              <Link to="/indoremap">Indore</Link>
+              {/* <p className="text-sm text-gray-600 mt-2">Prabhat Bhopal</p> */}
+            </div>
+            <Link
+              to="tel:8319955741"
+              className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]"
+            >
               <LuPhoneCall className="w-7 text-3xl" />
               <h4 className="text-gray-800 text-base font-bold mt-4">
                 Call us
               </h4>
-              <Link to="tel:8319955741" className="text-sm text-gray-600 mt-2">8319955741</Link>
+              <Link to="tel:8319955741" className="text-sm text-gray-600 mt-2">
+                8319955741
+              </Link>
             </Link>
-            <Link to="https://wa.me/8319955741" target="_blank" rel="noreferrer noopener" className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
+            <Link
+              to="https://wa.me/8319955741"
+              target="_blank"
+              rel="noreferrer noopener"
+              className="flex flex-col items-center justify-center rounded-lg w-full h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]"
+            >
               <IoChatboxEllipsesOutline className="w-7 text-3xl fill-blue-600" />
               <h4 className="text-gray-800 text-base font-bold mt-4">
                 Chat to us
               </h4>
-              <p className="text-sm text-gray-600 mt-2">huaaaaaaa.com</p>
+              {/* <p className="text-sm text-gray-600 mt-2">huaaaaaaa.com</p> */}
             </Link>
             <div className="grid sm:grid-cols-2  items-center justify-center rounded-lg  h-44 p-4 text-center bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)]">
-              <Link to="https://www.instagram.com/manasvi.technologies/?igshid=NTc4MTIwNjQ2YQ%3D%3D" target="_blank" rel="noreferrer noopener" className=" flex items-center justify-center">
+              <Link
+                to="https://www.instagram.com/manasvi.technologies/?igshid=NTc4MTIwNjQ2YQ%3D%3D"
+                target="_blank"
+                rel="noreferrer noopener"
+                className=" flex items-center justify-center"
+              >
                 <IoLogoInstagram className="w-10 h-10 text-black  hover:text-gray-600 transform transition-transform duration-300 hover:scale-110" />
               </Link>
-              <Link to="https://www.facebook.com/people/Manasvi-Technologies-OPC-Pvt-Ltd/61555158365754/" target="_blank" rel="noreferrer noopener" className=" flex items-center justify-center">
+              <Link
+                to="https://www.facebook.com/people/Manasvi-Technologies-OPC-Pvt-Ltd/61555158365754/"
+                target="_blank"
+                rel="noreferrer noopener"
+                className=" flex items-center justify-center"
+              >
                 <IoLogoFacebook className="w-10 h-10 text-black  hover:text-gray-600  transform transition-transform duration-300 hover:scale-110" />
               </Link>
-              <Link to="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQHAAqowuN-m9AAAAZDAuUoY5uxO81U7SEwFB42PI9wsJ2PJ_yCmar--HYuTGEQnqKueTr__SIp9r42Rur5oDJjqQY4QKWA981SoUAaS5jYta0xWrl2F2EU8duJ07NHIV8zFT5A=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fmanasvi-technologies-7aa426262%2F" target="_blank" rel="noreferrer noopener" className=" flex items-center justify-center">
+              <Link
+                to="https://www.linkedin.com/authwall?trk=bf&trkInfo=AQHAAqowuN-m9AAAAZDAuUoY5uxO81U7SEwFB42PI9wsJ2PJ_yCmar--HYuTGEQnqKueTr__SIp9r42Rur5oDJjqQY4QKWA981SoUAaS5jYta0xWrl2F2EU8duJ07NHIV8zFT5A=&original_referer=&sessionRedirect=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fmanasvi-technologies-7aa426262%2F"
+                target="_blank"
+                rel="noreferrer noopener"
+                className=" flex items-center justify-center"
+              >
                 <IoLogoLinkedin className="w-10 h-10 text-black  hover:text-gray-600  transform transition-transform duration-300 hover:scale-110" />
               </Link>
-              <Link to="https://x.com/i/flow/login?redirect_after_login=%2Fmanasvitech01" target="_blank" rel="noreferrer noopener" className=" flex items-center justify-center">
+              <Link
+                to="https://x.com/i/flow/login?redirect_after_login=%2Fmanasvitech01"
+                target="_blank"
+                rel="noreferrer noopener"
+                className=" flex items-center justify-center"
+              >
                 <IoLogoTwitter className="w-10 h-10 text-black  hover:text-gray-600  transform transition-transform duration-300 hover:scale-110" />
               </Link>
             </div>
@@ -137,7 +178,10 @@ const ContactR = () => {
                   type="submit"
                   className="text-gray-800 w-full relative text-white bg-[#05102C] hover:bg-white hover:text-black font-semibold rounded-lg text-sm px-6 py-3 !mt-6"
                 >
-                  <BsFillSendFill className="mr-2 inline" fill="currentColors" />
+                  <BsFillSendFill
+                    className="mr-2 inline"
+                    fill="currentColors"
+                  />
                   Send Message
                 </button>
                 {error && <p className="text-red-500 mt-4">{error}</p>}

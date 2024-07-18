@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import Logout from './Logout';
 
 const Admin = ({ children }) => {
   return (
@@ -78,10 +79,13 @@ const Sidebar = () => {
             <Link to="/admin/ManageReviews">Review Management</Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
-            <Link to="/CreateReview">Create Review </Link>
+            <Link to="/admin/CreateReview">Create Review </Link>
           </li>
           <li className="p-4 hover:bg-gray-700">
             <Link to="/admin/ManageContacts">Contact Management</Link>
+          </li>
+          <li className="p-4 hover:bg-gray-700">
+            <Link to="/admin/logout">Logout</Link>
           </li>
         </ul>
       </nav>
@@ -93,7 +97,7 @@ const Header = () => {
   return (
     <div className="flex justify-between items-center mb-6 p-4">
       <h2 className="text-3xl font-bold">Dashboard</h2>
-      <button className="p-2 bg-blue-500 text-white rounded">Logout</button>
+      <Link to="/" className="p-2 bg-blue-500 text-white rounded">Home</Link>
     </div>
   );
 };

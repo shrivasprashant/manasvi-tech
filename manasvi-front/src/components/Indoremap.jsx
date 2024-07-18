@@ -1,7 +1,7 @@
 import React from "react";
 import backgroundImage from "../assets/Images/Footer.jpg";
 
-function Map() {
+function Indoremap() {
   return (
     <div className="mt-0  min-h-screen">
       <div
@@ -28,9 +28,9 @@ function Map() {
       </div>
       <div className="flex  justify-center p-4">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2858.9234990718237!2d77.42806977400909!3d23.260137007423562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c6977a8c0eaf1%3A0x9474730f15fd13ee!2sManasvi%20Technologies%20(OPC)%20Private%20Limited%20-%20Mobile%20Application%20%7C%20Website%20%2F%20Software%20Development%20Company%20in%20Bhopal!5e1!3m2!1sen!2sin!4v1721214124167!5m2!1sen!2sin"
-          width="900"
-          height="450"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3679.440921476888!2d75.89051558079174!3d22.749012573299563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3962fd55eb6e3771%3A0xb5031466b9416817!2sShagun%20Arcade%2C%20Plot%20No-8%2C%20near%20Vijay%20Nagar%2C%20Near%20Apna%20Sweets%2C%20Vijay%20Nagar%20Circle%2C%20Scheme%20No.54%2C%20Vijay%20Nagar%2C%20Indore%2C%20Madhya%20Pradesh%20452010!5e0!3m2!1sen!2sin!4v1721302987392!5m2!1sen!2sin"
+          width="800"
+          height="600"
           style={{ border: 0 }}
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
@@ -39,4 +39,4 @@ function Map() {
   );
 }
 
-export default Map;
+export default Indoremap;

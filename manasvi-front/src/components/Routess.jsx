@@ -1,7 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./Home";
-
 import Login from "./Admin/Login";
 import Register from "./Admin/Register";
 import CreateProducts from "./Admin/CreateProducts";
@@ -14,7 +13,7 @@ import AppServices from "../pages/AppServices";
 import SoftwareServices from "../pages/SoftwareServices";
 import ProductPage from "../pages/ProductPage";
 import TeamSection from "../pages/TeamSection";
-import Contact from "../components/Contact"
+import Contact from "../components/Contact";
 import ServiceManagement from "./Admin/ServiceManagement";
 import Admin from "./Admin/Admin";
 import ProjectManagement from "./Admin/ProjectManagement";
@@ -26,20 +25,28 @@ import HeroSeHome from "./HeroSeHome";
 import ContactR from "./ContactR";
 import Slider from "./Slider";
 import Map from "./Map";
+import Logout from "./Admin/Logout";
+
+import Indoremap from "./Indoremap";
+
+import ProtectedAdminRoute from "../components/Admin/ProtectedAdminRoute"; // Import the protected route component
 
 function Routess() {
   return (
     <div>
       <Routes>
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/admin/CreateTeam" element={<CreateTeam />} />
-        <Route path="/admin/CreateProducts" element={<CreateProducts />} />
-        <Route path="/CreateReview" element={<CreateReview />} />
-        <Route path="/admin/services" element={<ServiceManagement />} />
-        <Route path="/admin/ManageProducts" element={<ProjectManagement />} />
-        <Route path="/admin/ManageTeam" element={<TeamManagement />} />
-        <Route path="/admin/ManageReviews" element={<ReviewManagement />} />
-        <Route path="/admin/ManageContacts" element={<ContactManagement />} />
+        <Route element={<ProtectedAdminRoute />}>
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin/CreateTeam" element={<CreateTeam />} />
+          <Route path="/admin/CreateProducts" element={<CreateProducts />} />
+          <Route path="/admin/CreateReview" element={<CreateReview />} />
+          <Route path="/admin/services" element={<ServiceManagement />} />
+          <Route path="/admin/ManageProducts" element={<ProjectManagement />} />
+          <Route path="/admin/ManageTeam" element={<TeamManagement />} />
+          <Route path="/admin/ManageReviews" element={<ReviewManagement />} />
+          <Route path="/admin/ManageContacts" element={<ContactManagement />} />
+          <Route path="/admin/logout" element={<Logout />} />
+        </Route>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
@@ -53,13 +60,11 @@ function Routess() {
         <Route path="/contact" element={<Contact />} />
         <Route path="/feature" element={<FeatureSection />} />
         <Route path="/Hero" element={<HeroSeHome />} />
-        <Route path="/contactr" element={<ContactR/>} />
-        <Route path="/slider" element={<Slider/>} />
-        <Route path="/map" element={<Map/>} />
-      
-
-
-        <Route path="*" element={<h1>page not found</h1>} />
+        <Route path="/contactr" element={<ContactR />} />
+        <Route path="/slider" element={<Slider />} />
+        <Route path="/map" element={<Map />} />
+        <Route path="/indoremap" element={<Indoremap />} />
+        <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </div>
   );

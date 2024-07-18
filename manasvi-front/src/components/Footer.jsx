@@ -95,25 +95,23 @@ const Footer = () => {
           </div>
 
           <div>
-  <h2 className="text-lg md:text-xl font-semibold">Subscribe</h2>
-  <form className="mt-4">
-    <div className="flex flex-col md:flex-row items-center">
-      <input
-        type="email"
-        placeholder="Email address"
-        className="w-full md:flex-1 px-4 py-2 rounded-md text-gray-900 md:mr-2"
-      />
-      <button className="w-full md:w-auto mt-2 md:mt-0 px-4 py-2 bg-purple-600 rounded-md hover:bg-purple-700 text-white">
-        Subscribe
-      </button>
-    </div>
-    <p className="mt-4 text-sm md:text-base">
-      Hello, we are Lift Media. Our goal is to translate the positive effects from ...
-    </p>
-  </form>
-</div>
-
-
+            <h2 className="text-lg md:text-xl font-semibold">Subscribe</h2>
+            <form className="mt-4">
+              <div className="flex flex-col md:flex-row items-center">
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  className="w-full md:flex-1 px-4 py-2 rounded-md text-gray-900 md:mr-2"
+                />
+                <button className="w-full md:w-auto mt-2 md:mt-0 px-4 py-2 bg-purple-600 rounded-md hover:bg-purple-700 text-white">
+                  Subscribe
+                </button>
+              </div>
+              <p className="mt-4 text-sm md:text-base">
+                Hello, we are Lift Media. Our goal is to translate the positive effects from ...
+              </p>
+            </form>
+          </div>
         </div>
 
         <div className="mt-8 flex flex-col md:flex-row items-center justify-between border-t border-gray-700 pt-4 text-center text-sm text-white md:text-base space-y-4 md:space-y-0">
@@ -142,6 +140,11 @@ const Footer = () => {
               <FaFacebook size={24} />
             </a>
           </div>
+        </div>
+
+        <div className="mt-8 text-white text-center text-sm md:text-base">
+          <p>111B, 80 Feet Rd, above Bhagwan Ustad gulab jamu wala, Old Ashoka Garden, Ashoka Garden, Bhopal, Madhya Pradesh 462023</p>
+          <p>203 Shagun Arcade, near Medanta Hospital, at Rashoma Square, Vijay Nagar, Indore</p>
         </div>
       </div>
     </div>

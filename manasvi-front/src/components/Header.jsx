@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import mlogo from "../assets/Images/manasvilogo.png";
 import { FaAngleDown } from "react-icons/fa";
 
@@ -11,6 +11,18 @@ const Header = () => {
   const [isHeaderWhite, setHeaderWhite] = useState(
     window.pageYOffset > 10 ? true : false
   );
+
+  const role = localStorage.getItem("role");
+  const token = localStorage.getItem("token");
+
+  // Example: User authentication state and role
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState("user");
+
+  useEffect(() => {
+    setUserRole(role);
+    setIsLoggedIn(!!token);
+  }, [role, token]);
 
   const toggleBottomBar = () => {
     setBottomBarVisible(!isBottomBarVisible);
@@ -35,7 +47,7 @@ const Header = () => {
   return (
     <div>
       <nav
-        className={`p-4 fixed top-0 left-0 w-full z-50 backdrop-filter backdrop-blur-2xl transition-transform duration-300 ${
+        className={`p-4 fixed top-0 left-0 w-full z-40 backdrop-filter backdrop-blur-2xl transition-transform duration-300 ${
           isHeaderVisible
             ? isHeaderWhite
               ? "bg-white shadow-lg transform translate-y-0"
@@ -54,7 +66,7 @@ const Header = () => {
                 isActive ? "text-black font-bold underline" : "text-black"
               }
             >
-              Home
+              Homee
             </NavLink>
             <NavLink
               to="/about"
@@ -162,6 +174,15 @@ const Header = () => {
                 Contact Us
               </button>
             </NavLink>
+            {isLoggedIn && userRole === "admin" ? (
+              <NavLink to="/admin" className="text-black focus:outline-none py-1 px-4 border border-gray-400 rounded-2xl">
+                Admin
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="text-black font-bold underline">
+                Login
+              </NavLink>
+            )}
           </div>
           <div className="md:hidden">
             <button
@@ -302,6 +323,15 @@ const Header = () => {
           <a href="tel:+8319056741" className="text-white">
             8319056741 📞
           </a>
+          {isLoggedIn && userRole === "admin" ? (
+              <NavLink to="/admin" className="text-white">
+                Admin
+              </NavLink>
+            ) : (
+              <NavLink to="/login" className="text-black font-bold underline inline-block">
+                Login
+              </NavLink>
+            )}
         </div>
       </div>
     </div>
