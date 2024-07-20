@@ -4,20 +4,36 @@ import { Link } from "react-router-dom";
 
 const ProjectCards = () => {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("/projects/all");
-        setProjects(response.data);
-        console.log(response.data);
+        const response = await axios.get("/api/projects/all");
+        if (response.data.length === 0) {
+          setError("No projects found.");
+        } else {
+          setProjects(response.data);
+        }
       } catch (error) {
+        setError("Error fetching projects.");
         console.error("Error fetching projects:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchProjects();
   }, []);
+
+  if (loading) {
+    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="flex items-center justify-center min-h-screen text-red-500">{error}</div>;
+  }
 
   return (
     <section
@@ -52,17 +68,11 @@ const ProjectCards = () => {
                   <p className="text-gray-700 text-base">{project.description}</p>
                 </div>
                 <div className="mt-4 flex space-x-2">
-                {
-                    project.link ? (
-                      <Link to={project.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
-                    )
-                      : (
-                        <Link to={''} className="badge badge-outline">Soon</Link>
-                      )
-                  }
-                  {/* <button className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-700">
-                    Details
-                  </button> */}
+                  {project.link ? (
+                    <Link to={project.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
+                  ) : (
+                    <Link to={''} className="badge badge-outline">Soon</Link>
+                  )}
                 </div>
               </div>
             </div>

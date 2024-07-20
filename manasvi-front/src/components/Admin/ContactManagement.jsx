@@ -9,6 +9,7 @@ const ContactManagement = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
 
   useEffect(() => {
     fetchContacts();
@@ -16,10 +17,10 @@ const ContactManagement = () => {
 
   const fetchContacts = async () => {
     try {
-      const response = await axios.get('/contacts/all');
+      const response = await axios.get('/api/contacts/all');
       setContacts(response.data);
     } catch (error) {
-      console.error('Error fetching contacts:', error);
+      handleError('Error fetching contacts:', error);
     }
   };
 
@@ -28,12 +29,12 @@ const ContactManagement = () => {
     try {
       const newContact = { name, address, phoneNumber, email, message };
 
-      await axios.post('/contacts/create', newContact);
+      await axios.post('/api/contacts/create', newContact);
 
       fetchContacts();
       clearForm();
     } catch (error) {
-      console.error('Error creating contact:', error);
+      handleError('Error creating contact:', error);
     }
   };
 
@@ -42,23 +43,28 @@ const ContactManagement = () => {
     try {
       const updatedContact = { name, address, phoneNumber, email, message };
 
-      await axios.put(`/contacts/update/${selectedContact._id}`, updatedContact);
+      await axios.put(`/api/contacts/update/${selectedContact._id}`, updatedContact);
 
       fetchContacts();
       clearForm();
     } catch (error) {
-      console.error('Error updating contact:', error);
+      handleError('Error updating contact:', error);
     }
   };
 
   const handleDelete = async (contactId) => {
     try {
-      await axios.delete(`/contacts/delete/${contactId}`);
+      await axios.delete(`/api/contacts/delete/${contactId}`);
       fetchContacts();
       clearForm();
     } catch (error) {
-      console.error('Error deleting contact:', error);
+      handleError('Error deleting contact:', error);
     }
+  };
+
+  const handleError = (message, error) => {
+    console.error(message, error);
+    setError(`${message} ${error.response ? error.response.data : error.message}`);
   };
 
   const clearForm = () => {
@@ -68,6 +74,7 @@ const ContactManagement = () => {
     setEmail('');
     setMessage('');
     setSelectedContact(null);
+    setError('');
   };
 
   const selectContact = (contact) => {
@@ -82,6 +89,9 @@ const ContactManagement = () => {
   return (
     <div className="container mx-auto">
       <h1 className="text-3xl font-bold mb-8">Contact Management</h1>
+
+      {/* Error message */}
+      {error && <div className="bg-red-500 text-white p-4 mb-4 rounded">{error}</div>}
 
       {/* Form for creating new contact */}
       <form onSubmit={selectedContact ? handleUpdate : handleCreate} className="max-w-lg mx-auto mb-8">

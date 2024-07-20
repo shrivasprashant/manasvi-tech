@@ -22,7 +22,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/admins/login', formData);
+      const response = await axios.post('/api/admins/login', formData);
       setSuccess('Login successful');
       console.log(response.data);
 
@@ -64,13 +64,13 @@ const Login = () => {
         </form>
         {error && <div className="mt-4 text-center text-red-500">{error}</div>}
         {success && <div className="mt-4 text-center text-green-500">{success}</div>}
-        <div className="mt-4 text-center">
+        {/* <div className="mt-4 text-center">
           <a href="#" className="text-blue-500">Forgot Password?</a>
         </div>
         <div className="mt-4 text-center">
           <span className="text-sm">Don't have an account?</span>
           <a href="/register" className="text-blue-500"> Register</a>
-        </div>
+        </div> */}
       </div>
     </div>
   );

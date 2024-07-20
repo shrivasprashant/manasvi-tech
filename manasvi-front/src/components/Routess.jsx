@@ -26,6 +26,7 @@ import ContactR from "./ContactR";
 import Slider from "./Slider";
 import Map from "./Map";
 import Logout from "./Admin/Logout";
+import Banner from "./Banner";
 
 import Indoremap from "./Indoremap";
 
@@ -64,6 +65,7 @@ function Routess() {
         <Route path="/slider" element={<Slider />} />
         <Route path="/map" element={<Map />} />
         <Route path="/indoremap" element={<Indoremap />} />
+        {/* <Route path="/banner" element={<Banner />} /> */}
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </div>

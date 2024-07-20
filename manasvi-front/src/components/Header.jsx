@@ -66,7 +66,7 @@ const Header = () => {
                 isActive ? "text-black font-bold underline" : "text-black"
               }
             >
-              Homee
+              Home
             </NavLink>
             <NavLink
               to="/about"
@@ -179,7 +179,7 @@ const Header = () => {
                 Admin
               </NavLink>
             ) : (
-              <NavLink to="/login" className="text-black font-bold underline">
+              <NavLink to="/login" className="text-black focus:outline-none py-1 px-4 border border-gray-400 rounded-2xl">
                 Login
               </NavLink>
             )}

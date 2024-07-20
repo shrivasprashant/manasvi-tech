@@ -47,7 +47,7 @@ const TeamSection = () => {
                     <div  key={index} className="bg-white py-4 px-2 shadow-md rounded-lg hover:scale-110 transition-all duration-500">
                     <img
                       src={item.url}
-                      className="w-36 h-36 rounded-full inline-block object-cover"
+                      className="w-36  rounded-full inline-block object-cover"
                     />
       
                     <div className="mt-4">

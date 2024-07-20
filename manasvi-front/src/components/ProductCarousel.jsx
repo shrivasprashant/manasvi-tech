@@ -9,15 +9,24 @@ import { Link } from 'react-router-dom';
 
 const ProductCarousel = () => {
   const [products, setProducts] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get('/projects/all');
+        const response = await axios.get('/api/projects/all');
         setProducts(response.data);
-        console.log(response.data);
+        if (response.data.length === 0) {
+          setError('No products found.');
+        } else {
+          setError('');
+        }
       } catch (error) {
+        setError('Error fetching products.');
         console.error('Error fetching products:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -26,90 +35,87 @@ const ProductCarousel = () => {
 
   return (
     <div className="container mx-auto md:py-24 lg:py-12 text-center min-h-screen">
-      <h2 className="text-center  text-2xl font-bold bg-white text-black inline-block rounded-full px-8 py-2 mb-6 border border-gray-300  hover:bg-[#a7a7eb]">
+      <h2 className="text-center text-2xl font-bold bg-white text-black inline-block rounded-full px-8 py-2 mb-6 border border-gray-300 hover:bg-[#a7a7eb]">
         Our Featured Products
       </h2>
-      <h1 className='text-4xl -tracking-normal capitalize font-bold text-black md:mb-12'>
+      <h1 className="text-4xl -tracking-normal capitalize font-bold text-black md:mb-12">
         Let me know <span className="text-[#9595f1]">if you need</span> <br /> any other modifications!
       </h1>
-      <Swiper
-        modules={[Autoplay, Pagination, Navigation]}
-        slidesPerView={1}
-        spaceBetween={10}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
-        breakpoints={{
-          640: {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          768: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          1024: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-          1280: {
-            slidesPerView: 3,
-            spaceBetween: 30,
-          },
-        }}
-        className="mySwiper bg-gray-300 p-10 rounded-lg"
-      >
-        {products.map((product) => (
-          <SwiperSlide key={product._id}>
-            <div className="group card bg-[#192655] h-96 w-72 shadow-xl mx-auto relative overflow-hidden">
-              <figure className='w-full h-64 py-2'>
-                <img
-                  className="w-[270px] h-full object-cover bg-[#4793AF]"
-                  src={`data:image/jpeg;base64,${product.image}`}
-                  alt={product.name}
-                />
-              </figure>
-              <div className="absolute inset-0 flex flex-col text-center px-6 items-center justify-center    bg-[#192655] bg-opacity-90 text-white transition-transform transform translate-y-full group-hover:translate-y-0">
-                <h2 className="card-title text-white">
-                  {product.name}
-                </h2>
-                <p className="line-clamp-10">{product.description}</p>
-                <div className="card-actions justify-between w-full pt-5">
-                  {
-                    product.link ? (
+      {isLoading ? (
+        <p className="text-black text-xl">Loading...</p>
+      ) : error ? (
+        <p className="text-black text-xl">{error}</p>
+      ) : (
+        <Swiper
+          modules={[Autoplay, Pagination, Navigation]}
+          slidesPerView={1}
+          spaceBetween={10}
+          autoplay={{
+            delay: 3000,
+            disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            768: {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            1280: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+          }}
+          className="mySwiper bg-gray-300 p-10 rounded-lg"
+        >
+          {products.map((product) => (
+            <SwiperSlide key={product._id}>
+              <div className="group card bg-[#192655] h-96 w-72 shadow-xl mx-auto relative overflow-hidden">
+                <figure className='w-full h-64 py-2'>
+                  <img
+                    className="w-[270px] h-full object-cover bg-[#4793AF]"
+                    src={`data:image/jpeg;base64,${product.image}`}
+                    alt={product.name}
+                  />
+                </figure>
+                <div className="absolute inset-0 flex flex-col text-center px-6 items-center justify-center bg-[#192655] bg-opacity-90 text-white transition-transform transform translate-y-full group-hover:translate-y-0">
+                  <h2 className="card-title text-white">
+                    {product.name}
+                  </h2>
+                  <p className="line-clamp-10">{product.description}</p>
+                  <div className="card-actions justify-between w-full pt-5">
+                    {product.link ? (
                       <Link to={product.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
-                    )
-                      : (
-                        <Link to={''} className="badge badge-outline">Soon</Link>
-                      )
-                  }
-                  {/* <Link to={''} className="badge badge-outline">Demo</Link> */}
-                  <Link to={`/products`} className="badge badge-outline">Details</Link>
+                    ) : (
+                      <Link to={''} className="badge badge-outline">Soon</Link>
+                    )}
+                    <Link to={`/products`} className="badge badge-outline">Details</Link>
+                  </div>
+                </div>
+                <div className="card-body absolute bottom-0 left-0 w-full bg-opacity-80 text-white transition-transform transform translate-y-0 group-hover:translate-y-full">
+                  <h2 className="card-title text-white">
+                    {product.name}
+                  </h2>
+                  <div className="card-actions justify-between">
+                    {product.link ? (
+                      <Link to={product.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
+                    ) : (
+                      <Link to={''} className="badge badge-outline">Soon</Link>
+                    )}
+                    <Link to={`/products`} className="badge badge-outline">Details</Link>
+                  </div>
                 </div>
               </div>
-              <div className="card-body absolute bottom-0 left-0 w-full  bg-opacity-80 text-white transition-transform transform translate-y-0 group-hover:translate-y-full">
-                <h2 className="card-title text-white">
-                  {product.name}
-                </h2>
-                {/* <p className="line-clamp-3">{product.description}</p> */}
-                <div className="card-actions justify-between">
-                  {
-                    product.link ? (
-                      <Link to={product.link} target="_blank" rel="noopener noreferrer" className="badge badge-outline">Demo</Link>
-                    )
-                      : (
-                        <Link to={''} className="badge badge-outline">Soon</Link>
-                      )
-                  }
-                  {/* <Link to={''} className="badge badge-outline">Demo</Link> */}
-                  <Link to={`/products`} className="badge badge-outline">Details</Link>
-                </div>
-              </div>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      )}
     </div>
   );
 };

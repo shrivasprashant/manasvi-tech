@@ -8,7 +8,7 @@ const getUserRole = () => {
   if (token && role === 'admin') {
     return role;
   }
-  return 'admin';
+  return '/';
 };
 
 const ProtectedAdminRoute = () => {

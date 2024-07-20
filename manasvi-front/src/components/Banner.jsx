@@ -20,6 +20,16 @@ const Banner = () => {
             <img src="https://images.unsplash.com/photo-1603201667141-5a2d4c673378?q=80&w=1796&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" className="h-64 w-64 rounded-full object-cover border-4 border-white" alt="img" />
           </div>
         </div>
+        {/* <div className="flex justify-center items-center h-screen bg-gray-100">
+      <a
+        href="../src/assets/pdf/PITCH DECK CLINIC MANAGEMENT.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700"
+      >
+        Open PDF
+      </a>
+    </div> */}
       </div>
     </div>
     </div>

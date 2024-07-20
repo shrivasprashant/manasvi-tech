@@ -9,14 +9,24 @@ import backgroundImage from "../assets/Images/Footer.jpg";
 
 const OurTeam = () => {
   const [teams, setTeams] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchTeams = async () => {
       try {
-        const response = await axios.get("/team/all");
+        const response = await axios.get("/api/team/all");
         setTeams(response.data);
+        if (response.data.length === 0) {
+          setError('No team members found.');
+        } else {
+          setError('');
+        }
       } catch (error) {
+        setError('Error fetching team members.');
         console.error("Error fetching team members:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -36,8 +46,8 @@ const OurTeam = () => {
         Our Team
       </h1>
       <div className="mt-8 text-center font-semibold text-white">
-      <h2 className="text-2xl lg:text-4xl font-bold text-white">Meet Our Team</h2>
-      <h3 className="text-xl lg:text-2xl pt-1 font-bold text-[#bea7a7]">
+        <h2 className="text-2xl lg:text-4xl font-bold text-white">Meet Our Team</h2>
+        <h3 className="text-xl lg:text-2xl pt-1 font-bold text-[#bea7a7]">
           Passionate. Dedicated. Expert.
         </h3>
         <p className="text-lg lg:text-xl mt-4 text-white">
@@ -45,35 +55,41 @@ const OurTeam = () => {
         </p>
       </div>
       <div className="mt-8 w-full">
-        <Swiper
-          modules={[Autoplay, Navigation, Pagination]}
-          autoplay={{ delay: 3000, disableOnInteraction: false }}
-          navigation
-          pagination={{ clickable: true }}
-          spaceBetween={5}
-          slidesPerView={1}
-          breakpoints={{
-            640: { slidesPerView: 1 },
-            768: { slidesPerView: 3 },
-            1024: { slidesPerView: 5 },
-          }}
-        >
-          {teams.map((team, index) => (
-            <SwiperSlide key={index}>
-              <div className="flex flex-col items-center justify-center  rounded-lg shadow-md px-2 p-4">
-                <img
-                  src={`data:image/jpeg;base64,${team.image}`}
-                  alt={team.name}
-                  className="w-32 h-32 -mb-4 z-10 rounded-full "
-                />
-                <div className="w-56 rounded-2xl text-center py-8 bg-[#676bb8]">
-                  <h3 className="text-xl capitalize text-gray-100 font-bold mb-1">{team.name}</h3>
-                  <p className="text-gray-100 capitalize">{team.designation}</p>
+        {isLoading ? (
+          <p className="text-white text-xl">Loading...</p>
+        ) : error ? (
+          <p className="text-white text-xl">{error}</p>
+        ) : (
+          <Swiper
+            modules={[Autoplay, Navigation, Pagination]}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            navigation
+            pagination={{ clickable: true }}
+            spaceBetween={5}
+            slidesPerView={1}
+            breakpoints={{
+              640: { slidesPerView: 1 },
+              768: { slidesPerView: 3 },
+              1024: { slidesPerView: 5 },
+            }}
+          >
+            {teams.map((team, index) => (
+              <SwiperSlide key={index}>
+                <div className="flex flex-col items-center justify-center rounded-lg shadow-md px-2 p-4">
+                  <img
+                    src={`data:image/jpeg;base64,${team.image}`}
+                    alt={team.name}
+                    className="w-32 h-32 -mb-4 z-10 rounded-full"
+                  />
+                  <div className="w-56 rounded-2xl text-center py-8 bg-[#676bb8]">
+                    <h3 className="text-xl capitalize text-gray-100 font-bold mb-1">{team.name}</h3>
+                    <p className="text-gray-100 capitalize">{team.designation}</p>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
     </div>
   );

@@ -5,11 +5,13 @@ import Admin from './Admin';
 const ProjectManagement = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
-  console.log(selectedProject);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [image, setImage] = useState(null);
   const [link, setLink] = useState('');
+  const [error, setError] = useState('');
+  const [updateError, setUpdateError] = useState('');
+  const [deleteError, setDeleteError] = useState('');
 
   useEffect(() => {
     fetchProjects();
@@ -17,9 +19,15 @@ const ProjectManagement = () => {
 
   const fetchProjects = async () => {
     try {
-      const response = await axios.get('/projects/all');
-      setProjects(response.data);
+      const response = await axios.get('/api/projects/all');
+      if (response.data.length === 0) {
+        setError('No projects found.');
+      } else {
+        setProjects(response.data);
+        setError('');
+      }
     } catch (error) {
+      setError('Error fetching projects.');
       console.error('Error fetching projects:', error);
     }
   };
@@ -35,7 +43,7 @@ const ProjectManagement = () => {
         formData.append('image', image);
       }
 
-      await axios.put(`/projects/update/${selectedProject._id}`, formData, {
+      await axios.put(`/api/projects/update/${selectedProject._id}`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -43,16 +51,20 @@ const ProjectManagement = () => {
 
       fetchProjects();
       setSelectedProject(null);
+      setUpdateError('');
     } catch (error) {
+      setUpdateError('Error updating project.');
       console.error('Error updating project:', error);
     }
   };
 
   const handleDelete = async (projectId) => {
     try {
-      await axios.delete(`/projects/delete/${projectId}`);
+      await axios.delete(`/api/projects/delete/${projectId}`);
       fetchProjects();
+      setDeleteError('');
     } catch (error) {
+      setDeleteError('Error deleting project.');
       console.error('Error deleting project:', error);
     }
   };
@@ -62,12 +74,16 @@ const ProjectManagement = () => {
     setName(project.name);
     setDescription(project.description);
     setLink(project.link || '');
+    setImage(null);  // Clear the image input when selecting a project
   };
 
   return (
     <Admin>
       <div className="container mx-auto">
         <h1 className="text-3xl font-bold mb-8">Project Management</h1>
+        {error && <div className="mb-4 p-4 bg-red-100 text-red-600 rounded-lg">{error}</div>}
+        {deleteError && <div className="mb-4 p-4 bg-red-100 text-red-600 rounded-lg">{deleteError}</div>}
+        {updateError && <div className="mb-4 p-4 bg-red-100 text-red-600 rounded-lg">{updateError}</div>}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
           {projects.map((project) => (
             <div key={project._id} className="bg-white shadow-md rounded-lg p-4">
@@ -160,6 +176,12 @@ const ProjectManagement = () => {
               className="inline-block bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-700"
             >
               Update Project
+            </button>
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="inline-block bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-700 ml-2"
+            >
+              Cancel
             </button>
           </form>
         )}

@@ -8,15 +8,24 @@ import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
 const ServicesPage = () => {
   const [services, setServices] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await axios.get("/api/services/all");
-        console.log("response from api ",response)
-        setServices(response.data);
+        const response = await axios.get("api/services/all");
+        if (response.data.length === 0) {
+          setError('No services found.');
+        } else {
+          setServices(response.data);
+          setError('');
+        }
       } catch (error) {
+        setError('Error fetching services.');
         console.error("Error fetching services:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
@@ -42,33 +51,39 @@ const ServicesPage = () => {
         </div>
 
         <div className="relative w-full max-w-5xl md:w-2/3">
-          <Swiper
-            modules={[Autoplay, Navigation, Pagination]}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            navigation
-            pagination={{ clickable: true }}
-            spaceBetween={30}
-            slidesPerView={1}
-            disableOnInteraction={true}
-            breakpoints={{
-              640: { slidesPerView: 1 },
-              768: { slidesPerView: 1 },
-              1024: { slidesPerView: 2 },
-            }}
-            className="relative w-full"
-          >
-            {services.map((service, index) => (
-              <SwiperSlide key={index} className="flex justify-center items-center py-16">
-                <div className="bg-[#BDBDFA] shadow-md p-4 rounded-lg text-center h-44 w-72 md:h-44 md:w-80 lg:h-44 lg:w-96">
-                  <div className="text-2xl font-bold text-gray-800 mb-1 rounded-full">
-                    <p className="px-2 bg-white inline-block rounded-full">{service.serialNumber}</p>
+          {isLoading ? (
+            <p className="text-xl text-gray-800">Loading...</p>
+          ) : error ? (
+            <p className="text-xl text-gray-800">{error}</p>
+          ) : (
+            <Swiper
+              modules={[Autoplay, Navigation, Pagination]}
+              autoplay={{ delay: 3000, disableOnInteraction: false }}
+              navigation
+              pagination={{ clickable: true }}
+              spaceBetween={30}
+              slidesPerView={1}
+              disableOnInteraction={true}
+              breakpoints={{
+                640: { slidesPerView: 1 },
+                768: { slidesPerView: 1 },
+                1024: { slidesPerView: 2 },
+              }}
+              className="relative w-full"
+            >
+              {services.map((service, index) => (
+                <SwiperSlide key={index} className="flex justify-center items-center py-16">
+                  <div className="bg-[#BDBDFA] shadow-md p-4 rounded-lg text-center h-44 w-72 md:h-44 md:w-80 lg:h-44 lg:w-96">
+                    <div className="text-2xl font-bold text-gray-800 mb-1 rounded-full">
+                      <p className="px-2 bg-white inline-block rounded-full">{service.serialNumber}</p>
+                    </div>
+                    <h4 className="text-xl font-semibold mb-1">{service.serviceName}</h4>
+                    <p className="text-gray-600 tracking-tighter">{service.description}</p>
                   </div>
-                  <h4 className="text-xl font-semibold mb-1">{service.serviceName}</h4>
-                  <p className="text-gray-600 tracking-tighter">{service.description}</p>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          )}
         </div>
       </div>
     </section>

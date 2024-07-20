@@ -16,7 +16,7 @@ const Logout = () => {
     // Call the logout API
     const logout = async () => {
       try {
-        await axios.get('/admins/logout', {
+        await axios.get('/api/admins/logout', {
           headers: {
             Authorization: `Bearer ${token}`
           }
