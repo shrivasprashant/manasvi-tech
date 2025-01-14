@@ -10,12 +10,9 @@ const ProjectCards = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get("/api/projects/all");
-        if (response.data.length === 0) {
-          setError("No projects found.");
-        } else {
-          setProjects(response.data);
-        }
+        const response = await axios.get("/projects/all");
+        setProjects(response.data);
+        console.log(response.data);
       } catch (error) {
         setError("Error fetching projects.");
         console.error("Error fetching projects:", error);

@@ -14,12 +14,9 @@ const Testimonial = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       try {
-        const response = await axios.get('/api/reviews/all');
-        if (response.data.length === 0) {
-          setError('No testimonials found.');
-        } else {
-          setTestimonials(response.data);
-        }
+        const response = await axios.get('/reviews/all');
+        setTestimonials(response.data);
+        setLoading(false);
       } catch (error) {
         setError('Error fetching testimonials.');
         console.error('Error fetching testimonials:', error);

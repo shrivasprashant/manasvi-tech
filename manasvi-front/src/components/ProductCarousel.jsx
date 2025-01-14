@@ -35,7 +35,7 @@ const ProductCarousel = () => {
 
   return (
     <div className="container mx-auto md:py-24 lg:py-12 text-center min-h-screen">
-      <h2 className="text-center text-2xl font-bold bg-white text-black inline-block rounded-full px-8 py-2 mb-6 border border-gray-300 hover:bg-[#a7a7eb]">
+      <h2 className="text-center  text-2xl font-bold bg-white text-black inline-block rounded-full px-8 py-2 mb-6 border border-gray-300  hover:bg-[#a7a7eb]">
         Our Featured Products
       </h2>
       <h1 className="text-4xl -tracking-normal capitalize font-bold text-black md:mb-12">
